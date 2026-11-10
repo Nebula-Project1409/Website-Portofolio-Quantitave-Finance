@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ghina Rizka Rohiman | Quantitative Finance Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h8"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 11h.01M12 11h.01M15 11h.01M9 15h.01M12 15h.01M15 15h.01M9 18h.01M12 18h.01M15 18h.01"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+  </svg>
+
+  <header class="navbar" id="top">
+    <div class="navbar-inner">
+      <a class="logo" href="#home" aria-label="Home">
+        <img src="img/logo-ghina.png" alt="Ghina" onerror="this.parentNode.classList.add('no-img');this.remove()">
+        <span class="logo-g">G</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="menu" id="menu" aria-label="Main">
+        <a class="active" href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a class="menu-cv" href="#">Download CV</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-solid btn-small" href="#">Download CV <svg class="ic"><use href="#i-download"/></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <img class="hero-art" src="img/hero-art.jpg" alt="">
+      <img class="mountain" src="img/gunung.jpg" alt="">
+
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="hello">Hello, I’m</p>
+          <h1>Ghina Rizka Rohiman</h1>
+          <p class="role">Economics Student at Brawijaya University<br>| Quantitative Finance Enthusiast</p>
+          <span class="rule"></span>
+          <p class="tagline">Driven by data, passionate about finance,<br>and always eager to learn.</p>
+          <div class="hero-btns">
+            <a class="btn btn-solid" href="#projects">Explore My Work <svg class="ic"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-outline" href="#about">About Me</a>
+          </div>
+        </div>
+
+        <aside class="hero-facts">
+          <div class="fact"><span class="fact-label">GPA</span><span class="fact-value">3.84</span></div>
+          <div class="fact"><span class="fact-label">Major</span><span class="fact-text">Economics –<br>Finance &amp; Banking<br>(UB)</span></div>
+          <div class="fact fact-focus">
+            <span class="fact-label">Focus</span>
+            <ul class="focus-chips"><li>Risk Management</li><li>Quantitative Finance</li><li>Data Analysis</li></ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <img class="photo" src="img/foto-ghina.jpg" alt="Ghina">
+
+      <div class="about-text">
+        <div class="title-row"><h2 class="section-title about-title">About Me</h2><span class="title-line"></span></div>
+        <p class="about-p">I am a fifth-semester undergraduate student at Brawijaya University, majoring in Economics, Finance and Banking. My interests lie in <strong>quantitative finance</strong>, <strong>risk management</strong>, and <strong>data-driven decision making</strong>.</p>
+        <p class="quote">“Always striving to grow,<br>both academically and personally.”</p>
+      </div>
+
+      <div class="highlights">
+        <div class="highlights-head"><h2 class="section-title">My Highlights</h2><span class="short-line"></span></div>
+        <div class="highlights-grid">
+          <div class="hl"><svg class="ic"><use href="#i-cap"/></svg><strong>3.84</strong><span>GPA</span></div>
+          <div class="hl"><svg class="ic"><use href="#i-trophy"/></svg><span>Academic<br>Achievements</span></div>
+          <div class="hl"><svg class="ic"><use href="#i-bars"/></svg><span>Data Analysis<br>Projects</span></div>
+          <div class="hl"><svg class="ic"><use href="#i-globe"/></svg><span>Global Study<br>Aspiration</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom">
+      <div class="col col-left">
+        <div id="education">
+          <h2 class="section-title small underlined">Education</h2>
+          <div class="edu">
+            <div class="edu-logo"><img src="img/logo-ub.png" alt="Brawijaya University logo"></div>
+            <div class="edu-text">
+              <strong>Brawijaya University</strong>
+              Undergraduate Student in <br>Economics, Finance &amp; Banking
+              <p class="years">2024 – Present</p>
+            </div>
+          </div>
+        </div>
+        <div id="skills">
+          <h2 class="section-title small underlined">Skills</h2>
+          <div class="chips">
+            <span>Python</span><span>Pandas</span><span>NumPy</span><span>Excel</span>
+            <span>Matplotlib</span><span>Statistics</span><span>Financial Modeling</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-mid" id="projects">
+        <div class="projects-head">
+          <h2 class="section-title small">Featured Projects</h2>
+          <a class="view-all" href="#">View All <svg class="ic"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <img class="thumb" src="img/thumb-1.jpg" alt="">
+            <div class="card-body"><h3>Monte Carlo Simulation<br>for Stock Returns</h3><p>Simulating investment<br>outcomes using historical data.</p><a href="#">View Project <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+          </article>
+          <article class="card">
+            <img class="thumb" src="img/thumb-2.jpg" alt="">
+            <div class="card-body"><h3>Value at Risk (VaR) <span class="amp">&amp;</span><br>Expected Shortfall</h3><p>Measuring portfolio risk<br>with Monte Carlo.</p><a href="#">View Project <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+          </article>
+          <article class="card">
+            <img class="thumb" src="img/thumb-3.jpg" alt="">
+            <div class="card-body"><h3>Credit Scoring Model</h3><p>Predicting default risk using<br>Machine Learning.</p><a href="#">View Project <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="col col-right">
+        <div id="research">
+          <h2 class="section-title small underlined">Research <span class="amp">&amp;</span> Interests</h2>
+          <ul class="interests">
+            <li><svg class="ic"><use href="#i-bars"/></svg>Financial Risk Management</li>
+            <li><svg class="ic"><use href="#i-calc"/></svg>Quantitative Finance</li>
+            <li><svg class="ic"><use href="#i-doc"/></svg>Treasury <span class="amp">&amp;</span> Financial Statements</li>
+            <li><svg class="ic"><use href="#i-db"/></svg>Data Science in Finance</li>
+          </ul>
+        </div>
+        <div id="contact">
+          <div class="title-row connect-row"><h2 class="section-title small">Let’s Connect</h2><span class="title-line"></span></div>
+          <div class="connect">
+  <a href="mailto:ghinarizkarohiman@gmail.com" aria-label="Email"><svg class="ic"><use href="#i-mail"/></svg></a>
+  <a href="https://www.linkedin.com/in/ghinarizka-rohiman-668903288/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+  <a href="https://github.com/Nebula-Project1409" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById("menuToggle");
+      var menu = document.getElementById("menu");
+      toggle.addEventListener("click", function () {
+        var open = menu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      menu.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") {
+          menu.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
