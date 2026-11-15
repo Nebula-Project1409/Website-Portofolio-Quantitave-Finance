@@ -1,0 +1,437 @@
+
+.mc-tabs {
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid #d6c7c2;
+    margin-bottom: 32px;
+}
+
+
+
+/* =================================
+   MONTE CARLO WORKSPACE
+================================= */
+
+.mc-workspace {
+    width: 100%;
+    max-width: 1180px;
+    margin: 60px auto;
+}
+
+/* TAB NAVIGATION */
+
+.mc-tabs {
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid #d6c7c2;
+    margin-bottom: 40px;
+}
+
+.mc-tab {
+    padding: 16px 4px;
+    border: none;
+    background: transparent;
+    color: #806d68;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.mc-tab:hover,
+.mc-tab.active {
+    color: #682127;
+    border-bottom-color: #682127;
+}
+
+/* TAB CONTENT */
+
+.mc-panel {
+    display: none;
+    animation: mcFade 0.35s ease;
+}
+
+.mc-panel.active {
+    display: block;
+}
+
+@keyframes mcFade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* SECTION HEADING */
+
+.mc-section-heading {
+    margin-bottom: 32px;
+}
+
+.mc-section-heading span {
+    color: #9a6260;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-family: "Inter", sans-serif;
+}
+.mc-section-heading h2 {
+    color: #3a1e20;
+    font-family: "Playfair Display", serif;
+    font-size: 34px;
+    font-weight: 500;
+    margin: 12px 0;
+    letter-spacing: normal;
+}
+
+.mc-section-heading p {
+    color: #806d68;
+    font-family: "Lora", serif;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* CONTENT CONTAINERS */
+
+.mc-video-container,
+.mc-learning-materials,
+.mc-concept-card,
+.mc-chart-card,
+.mc-source-code,
+.mc-input-panel,
+.mc-results-panel {
+    background: #fffaf7;
+    border: 1px solid #e2d4ce;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.mc-video-container {
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mc-concept-sections,
+.mc-code-charts,
+.mc-simulator-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.mc-chart-card h3,
+.mc-source-code h3 {
+    color: #3a1e20;
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+}
+
+.mc-code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.mc-code-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.mc-code-actions button,
+#runSimulation {
+    background: #682127;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+}
+
+.mc-source-code pre {
+    overflow-x: auto;
+    background: #f4ece7;
+    padding: 20px;
+    border-radius: 6px;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .mc-tabs {
+        gap: 16px;
+        overflow-x: auto;
+    }
+
+    .mc-tab {
+        white-space: nowrap;
+        font-size: 11px;
+    }
+
+    .mc-concept-sections,
+    .mc-code-charts,
+    .mc-simulator-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .mc-section-heading h2 {
+        font-size: 28px;
+    }
+}
+
+
+/* =================================
+   CONCEPT VIDEO SECTION
+================================= */
+
+.mc-video-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+    align-items: stretch;
+}
+
+.mc-video-container {
+    min-height: 320px;
+    padding: 0;
+    overflow: hidden;
+    background: #eee2dc;
+}
+
+.mc-video-placeholder {
+    width: 100%;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #682127;
+}
+
+.mc-play-icon {
+    width: 58px;
+    height: 58px;
+    border: 1px solid #9a6260;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.mc-video-placeholder p {
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    margin: 0 0 6px;
+}
+
+.mc-video-placeholder small {
+    font-family: "Inter", sans-serif;
+    color: #806d68;
+}
+
+.mc-video-description {
+    padding: 28px;
+    background: #fffaf7;
+    border: 1px solid #e2d4ce;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mc-video-description > span,
+.mc-subheading > span {
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    color: #9a6260;
+}
+
+.mc-video-description h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #3a1e20;
+    margin: 16px 0;
+}
+
+.mc-video-description p {
+    color: #806d68;
+    font-family: "Lora", serif;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.mc-video-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.mc-video-meta span {
+    font-family: "Inter", sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #682127;
+    background: #f2e8e2;
+    padding: 8px 10px;
+}
+
+.mc-subheading {
+    margin-bottom: 20px;
+}
+
+.mc-subheading h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: #3a1e20;
+    margin-top: 10px;
+}
+
+.mc-learning-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.mc-concept-card {
+    margin: 0;
+    padding: 26px;
+}
+
+.mc-concept-card > span {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    color: #9a6260;
+    letter-spacing: 1px;
+}
+
+.mc-concept-card h4 {
+    font-family: "Playfair Display", serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: #3a1e20;
+    margin: 18px 0 10px;
+}
+
+.mc-concept-card p {
+    font-family: "Lora", serif;
+    font-size: 12px;
+    line-height: 1.9;
+    color: #806d68;
+}
+
+@media (max-width: 768px) {
+    .mc-video-layout,
+    .mc-learning-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mc-video-container,
+    .mc-video-placeholder {
+        min-height: 230px;
+    }
+}
+
+/* ---------- TAB 2: HASIL DAN KODE ---------- */
+.mc-workspace {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.mc-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.mc-metric {
+    background: #fffaf7;
+    border: 1px solid #e2d4ce;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.mc-metric span {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    color: #806d68;
+}
+
+.mc-metric strong {
+    display: block;
+    margin: 8px 0 4px;
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: #682127;
+}
+
+.mc-metric small {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    color: #9a8a85;
+}
+
+.mc-metrics-note {
+    margin: 0 0 24px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    color: #806d68;
+}
+
+.mc-chart-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 14px;
+    border-radius: 4px;
+}
+
+.mc-chart-wide {
+    grid-column: 1 / -1;
+}
+
+.mc-code-actions a {
+    background: #682127;
+    color: #fff;
+    padding: 11px 18px;
+    border-radius: 4px;
+    font-family: "Inter", sans-serif;
+    font-size: 13.33px;
+    text-decoration: none;
+}
+
+.mc-source-code pre {
+    max-height: 560px;
+    overflow: auto;
+}
+
+.mc-source-code code {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+}
+
+@media (max-width: 768px) {
+    .mc-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
