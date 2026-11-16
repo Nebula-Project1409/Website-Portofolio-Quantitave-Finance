@@ -18,6 +18,42 @@
 
 <body>
 
+  
+<header class="navbar" id="top">
+  <div class="navbar-inner">
+    <a class="logo" href="index.html#home" aria-label="Home">
+      <img src="img/foto-ghina.jpg" alt="Ghina"
+        onerror="this.parentNode.classList.add('no-img'); this.remove()">
+      <span class="logo-g">G</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Open menu" aria-expanded="false"
+      aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="menu" id="menu" aria-label="Main">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#education">Education</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="index.html#research">Research</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#contact">Contact</a>
+      <a class="menu-cv" href="#">Download CV</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-solid btn-small" href="#">
+        Download CV
+        <svg class="ic"><use href="#i-download"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+  
 <main class="all-projects">
 
   <!-- HEADER -->
@@ -26,8 +62,6 @@
 
       <div class="projects-header-copy">
 
-        <p class="eyebrow">NEBULA PROJECT / 2026</p>
-
         <h1>Featured Projects</h1>
 
         <span>
@@ -35,8 +69,6 @@
           exploring how data and quantitative methods can
           support better financial analysis and decision-making.
         </span>
-
-        <p class="project-count">QUANTITATIVE FINANCE</p>
 
       </div>
 
@@ -68,7 +100,7 @@
             Simulating possible stock price movements through
             stochastic processes and historical market data.
           </p>
-          <a href="projects/monte-carlo/2_Interface/index.html">
+          <a class="pj-card" href="projects/monte-carlo/2_Interface/monte-carlo.html">
             Explore Project <span>→</span>
           </a>
         </div>
@@ -335,13 +367,6 @@
 
     </div>
   </section>
-
-
-  <!-- FOOTER -->
-  <footer class="projects-footer">
-    <p>NEBULA PROJECT</p>
-    <span>Quantitative Finance · Financial Risk · Data Analysis</span>
-  </footer>
 
 </main>
 

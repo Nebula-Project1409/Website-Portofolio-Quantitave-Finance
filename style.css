@@ -1004,3 +1004,13 @@ img {
     padding: 7px 30px 0 !important;
   }
 }
+
+.card {
+    position: relative;
+}
+
+.card-body a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}

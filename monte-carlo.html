@@ -42,24 +42,77 @@
 </header>
 
 <main>
+    <section class="mc-hero">
+    <img class="mc-hero-art" src="images/hero_sebaran.png" alt="Distribution of simulated final portfolio values">
+    <div class="mc-hero-inner">
+        <span class="mc-hero-tag">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
+            Monte Carlo Simulation
+        </span>
+        <h1>Monte Carlo Simulation<br>for Stock Returns</h1>
+        <p class="mc-hero-sub">Simulating stock price movements using historical data..</p>
+        <ul class="mc-hero-chips">
+            <li>Python</li>
+            <li>NumPy</li>
+            <li>Pandas</li>
+            <li>Matplotlib</li>
+        </ul>
+    </div>
+</section>
 <!-- MONTE CARLO PROJECT TABS -->
 
 <section class="mc-workspace">
 
-    <!-- TAB NAVIGATION -->
-    <div class="mc-tabs">
+        <!-- TAB NAVIGATION: TIGA KARTU -->
+    <div class="mc-cards">
 
-        <button class="mc-tab active" data-tab="concept">
-            01. Concept Video
-        </button>
+        <a class="mc-card active" href="#concept" data-tab="concept">
+            <div class="mc-card-visual mc-visual-video" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+                    Concept Video
+                </h2>
+                <p class="mc-card-desc">Learn how Monte Carlo simulation works and why it is useful in finance.</p>
+                <span class="mc-card-cta">Watch Video &rarr;</span>
+            </div>
+        </a>
 
-        <button class="mc-tab" data-tab="code">
-            02. Full Code
-        </button>
+        <a class="mc-card" href="#code" data-tab="code">
+            <div class="mc-card-visual mc-visual-code" aria-hidden="true">
+                <div class="mc-win-bar"><i></i><i></i><i></i><span>monte_carlo.py</span></div>
+<pre>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import yfinance as yf
 
-        <button class="mc-tab" data-tab="simulator">
-            03. Try It Yourself
-        </button>
+daftar_saham = ["BBCA.JK", "BMRI.JK"]</pre>
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    Full Code
+                </h2>
+                <p class="mc-card-desc">Explore the complete Python script for Monte Carlo simulation.</p>
+                <span class="mc-card-cta">View Code &rarr;</span>
+            </div>
+        </a>
+
+        <a class="mc-card" href="#simulator" data-tab="simulator">
+            <div class="mc-card-visual mc-visual-chart" aria-hidden="true">
+                <img src="images/hero_sebaran.png" alt="">
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>
+                    Try It Yourself
+                </h2>
+                <p class="mc-card-desc">Run your own simulation and explore different stocks.</p>
+                <span class="mc-card-cta">Start Simulation &rarr;</span>
+            </div>
+        </a>
 
     </div>
 
@@ -191,7 +244,6 @@
             </div>
 
             <div class="mc-chart-card">
-                <h3>Distribution of Final Portfolio Values</h3>
                 <img src="images/grafik_sebaran_nilai_akhir.png" alt="Histogram of final portfolio values">
             </div>
 
@@ -210,8 +262,12 @@
                 </div>
             </div>
 
-            <pre><code id="codeText">Loading code…</code></pre>
+                       <pre><code id="codeText">Loading code…</code></pre>
         </div>
+
+    </div>
+
+    
 
     <!-- TAB 3: TRY IT YOURSELF -->
     <div class="mc-panel" id="simulator">

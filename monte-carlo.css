@@ -435,3 +435,278 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
+/* ---------- HERO ---------- */
+.mc-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(280px, 19vw, 360px);
+    border-bottom: 1px solid #e3c3bc;
+    background: linear-gradient(100deg, #fcede6 0%, #f9e2da 55%, #f4d5cc 100%);
+}
+
+.mc-hero-art {
+    position: absolute;
+    right: 3%;
+    bottom: 0;
+    height: 86%;
+    width: auto;
+    max-width: 58%;
+    opacity: 0.92;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 120px);
+    mask-image: linear-gradient(to right, transparent 0, #000 120px);
+}
+
+.mc-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 24px 48px;
+}
+
+.mc-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border: 1px solid #ecd2cb;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.55);
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #682127;
+}
+
+.mc-hero-tag svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.mc-hero h1 {
+    margin: 18px 0 12px;
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: clamp(34px, 3.7vw, 60px);
+    line-height: 1.1;
+    color: #682127;
+}
+
+.mc-hero-sub {
+    margin: 0 0 20px;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(15px, 1.2vw, 19px);
+    color: #6f5551;
+}
+
+.mc-hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mc-hero-chips li {
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: #682127;
+    color: #f6e4de;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.mc-hero + .mc-workspace {
+    margin-top: 36px;
+}
+
+@media (max-width: 768px) {
+    .mc-hero-art {
+        opacity: 0.3;
+        max-width: 90%;
+    }
+
+    .mc-hero-inner {
+        padding: 32px 24px 36px;
+    }
+}
+
+
+/* ---------- KARTU PILIHAN ---------- */
+.mc-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-bottom: 44px;
+}
+
+.mc-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff9f3;
+    border: 1px solid #e3d3cc;
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.mc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(104, 33, 39, 0.12);
+}
+
+.mc-card.active {
+    border-color: #682127;
+    box-shadow: 0 0 0 1px #682127;
+}
+
+.mc-card-visual {
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+}
+
+.mc-visual-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3a1416 0%, #682127 100%);
+}
+
+.mc-visual-video svg {
+    width: 64px;
+    height: 64px;
+    color: #f6e4de;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+}
+
+.mc-visual-code {
+    background: #2a1214;
+    padding: 14px 18px;
+}
+
+.mc-win-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+.mc-win-bar i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e06b62;
+}
+
+.mc-win-bar i:nth-child(2) { background: #e5b84c; }
+.mc-win-bar i:nth-child(3) { background: #58b46a; }
+
+.mc-win-bar span {
+    margin-left: 10px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    color: #d9c5be;
+}
+
+.mc-visual-code pre {
+    margin: 0;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #f1e3dc;
+    white-space: pre;
+    overflow: hidden;
+}
+
+.mc-visual-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(100deg, #fcede6 0%, #f4d5cc 100%);
+    padding: 18px 18px 0;
+}
+
+.mc-visual-chart img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: bottom;
+}
+
+.mc-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 22px 24px 26px;
+}
+
+.mc-card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 10px;
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #3a1e20;
+}
+
+.mc-card-title svg {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    color: #682127;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.mc-card-desc {
+    margin: 0 0 22px;
+    font-family: "Inter", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #6f5551;
+}
+
+.mc-card-cta {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 10px 22px;
+    border: 1px solid #682127;
+    border-radius: 999px;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #682127;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mc-card.active .mc-card-cta,
+.mc-card:hover .mc-card-cta {
+    background: #682127;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .mc-cards {
+        grid-template-columns: 1fr;
+    }
+}
+

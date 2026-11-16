@@ -1,25 +1,33 @@
 
-const tabs = document.querySelectorAll(".mc-tab");
+const tabs = document.querySelectorAll(".mc-card");
 const panels = document.querySelectorAll(".mc-panel");
 
+function openTab(name, scroll) {
+    tabs.forEach(tab => {
+        tab.classList.toggle("active", tab.dataset.tab === name);
+    });
+    panels.forEach(panel => {
+        panel.classList.toggle("active", panel.id === name);
+    });
+    if (scroll) {
+        document.getElementById(name).scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+}
+
 tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-
-        const target = tab.dataset.tab;
-
-        tabs.forEach(item => {
-            item.classList.remove("active");
-        });
-
-        panels.forEach(panel => {
-            panel.classList.remove("active");
-        });
-
-        tab.classList.add("active");
-        document.getElementById(target).classList.add("active");
-
+    tab.addEventListener("click", event => {
+        event.preventDefault();
+        openTab(tab.dataset.tab, true);
+        history.replaceState(null, "", "#" + tab.dataset.tab);
     });
 });
+
+const fromHash = window.location.hash.replace("#", "");
+const hashPanel = document.getElementById(fromHash);
+if (hashPanel && hashPanel.classList.contains("mc-panel")) {
+    openTab(fromHash, false);
+}
+
 
 /* ---------- TAB 2: kode dan hasil ---------- */
 const KODE_URL = "../1_Model/monte_carlo.py";

@@ -36,8 +36,8 @@
 .all-projects-header {
     position: relative;
     overflow: hidden;
-    min-height: 560px;
-    padding: 35px 5.5% 45px;
+    min-height: 440px;
+    padding: 20px 5.5% 20px;
     border-bottom: 1px solid var(--line);
     background:
         radial-gradient(
@@ -57,7 +57,7 @@
     z-index: 2;
     width: 100%;
     max-width: 1600px;
-    min-height: 470px;
+    min-height: 360px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
@@ -390,7 +390,7 @@
     }
 
     .all-projects-content {
-        padding: 45px 6% 65px;
+        padding: 40px 7% 110px;
     }
 
     .all-projects-grid {
