@@ -17,7 +17,7 @@
 <header class="navbar">
     <div class="navbar-inner">
         <a class="logo" href="../../../index.html#home" aria-label="Home">
-            <img src="../../../logo-ghina.png" alt="Ghina" onerror="this.parentNode.classList.add('no-img');this.remove()">
+            <img src="../../../img/logo-ghina.png" alt="Ghina" onerror="this.parentNode.classList.add('no-img');this.remove()">
         
         </a>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
@@ -43,7 +43,7 @@
 
 <main>
     <section class="mc-hero">
-    <img class="mc-hero-art" src="hero_sebaran.png" alt="Distribution of simulated final portfolio values">
+    <img class="mc-hero-art" src="images/hero_sebaran.png" alt="Distribution of simulated final portfolio values">
     <div class="mc-hero-inner">
         <span class="mc-hero-tag">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
@@ -102,7 +102,7 @@ daftar_saham = ["ASII.JK", "BMRI.JK",
 
         <a class="mc-card" href="#simulator" data-tab="simulator">
             <div class="mc-card-visual mc-visual-chart" aria-hidden="true">
-                <img src="hero_sebaran.png" alt="">
+                <img src="images/hero_sebaran.png" alt="">
             </div>
             <div class="mc-card-body">
                 <h2 class="mc-card-title">
@@ -240,16 +240,16 @@ daftar_saham = ["ASII.JK", "BMRI.JK",
         <div class="mc-code-charts">
             <div class="mc-chart-card">
                 <h3>Simulated Price Paths</h3>
-                <img src="grafik_jalur_monte_carlo.png" alt="Simulated portfolio paths with mean and percentile lines">
+                <img src="images/grafik_jalur_monte_carlo.png" alt="Simulated portfolio paths with mean and percentile lines">
             </div>
 
             <div class="mc-chart-card">
-                <img src="grafik_sebaran_nilai_akhir.png" alt="Histogram of final portfolio values">
+                <img src="images/grafik_sebaran_nilai_akhir.png" alt="Histogram of final portfolio values">
             </div>
 
             <div class="mc-chart-card mc-chart-wide">
                 <h3>Stock Comparison and Markowitz Weights</h3>
-                <img src="grafik_perbandingan_saham.png" alt="Annual return, volatility, Sharpe ratio and weights per stock">
+                <img src="images/grafik_perbandingan_saham.png" alt="Annual return, volatility, Sharpe ratio and weights per stock">
             </div>
         </div>
 
@@ -269,41 +269,85 @@ daftar_saham = ["ASII.JK", "BMRI.JK",
 
     
 
-    <!-- TAB 3: TRY IT YOURSELF -->
+       <!-- TAB 3: TRY IT YOURSELF -->
     <div class="mc-panel" id="simulator">
 
         <div class="mc-section-heading">
             <span>03 / INTERACTIVE EXPERIENCE</span>
             <h2>Try It Yourself</h2>
-            <p>Customize your assumptions and run your own Monte Carlo simulation.</p>
+            <p>Upload your own stock data, customize your assumptions and run your own Monte Carlo simulation.</p>
         </div>
 
         <div class="mc-simulator-layout">
 
             <div class="mc-input-panel">
-                <!-- STOCK SELECTION -->
-                <!-- HISTORICAL PERIOD -->
-                <!-- NUMBER OF SIMULATIONS -->
-                <!-- INITIAL CAPITAL -->
-                <!-- CONFIDENCE LEVEL -->
 
-                <button type="button" id="runSimulation">
-                    Run Simulation
-                </button>
+                <div class="mc-field">
+                    <span class="mc-label">1. Upload stock data (CSV, one stock per file)</span>
+                    <label class="mc-drop" id="dropZone" for="csvFiles">
+                        <strong>Drop CSV files here</strong>
+                        <span>or click to choose · Investing.com or Yahoo Finance · max 10 files</span>
+                    </label>
+                    <input type="file" id="csvFiles" accept=".csv" multiple hidden>
+                    <ul class="mc-file-list" id="fileList"></ul>
+                    <p class="mc-hint" id="csvStatus">No files yet. The file needs a Date column and a Close / Price column.</p>
+                </div>
+
+                
+
+                                <div class="mc-field">
+                    <label class="mc-label" for="inPeriod">Historical period</label>
+                    <select id="inPeriod">
+                        <option value="1">Last 1 year</option>
+                        <option value="3">Last 3 years</option>
+                        <option value="5" selected>Last 5 years</option>
+                        <option value="99">All uploaded data</option>
+                    </select>
+                </div>
+
+                <div class="mc-field">
+                    <label class="mc-label" for="inHorizon">Simulation horizon</label>
+                    <select id="inHorizon">
+                        <option value="126">126 trading days (≈ 6 months)</option>
+                        <option value="252" selected>252 trading days (≈ 1 year)</option>
+                        <option value="504">504 trading days (≈ 2 years)</option>
+                    </select>
+                </div>
+
+                <div class="mc-field">
+                    <label class="mc-label" for="inSims">Number of simulations</label>
+                    <select id="inSims">
+                        <option value="1000">1,000 paths</option>
+                        <option value="5000">5,000 paths</option>
+                        <option value="10000" selected>10,000 paths</option>
+                    </select>
+                </div>
+
+                <div class="mc-field">
+                    <span class="mc-label">Confidence level</span>
+                    <div class="mc-seg">
+                        <button type="button" data-conf="0.90">90%</button>
+                        <button type="button" data-conf="0.95" class="on">95%</button>
+                        <button type="button" data-conf="0.99">99%</button>
+                    </div>
+                </div>
+
+                <div class="mc-field">
+                    <label class="mc-label" for="inCapital">Initial capital (Rp)</label>
+                    <input type="number" id="inCapital" value="100000000" min="1000000" step="1000000">
+                </div>
+
+                <button type="button" id="runSimulation" disabled>Run Simulation</button>
             </div>
 
-            <div class="mc-results-panel">
-                <!-- SIMULATION CHARTS -->
-                <!-- VaR -->
-                <!-- EXPECTED SHORTFALL -->
-                <!-- INTERPRETATION -->
-                <!-- RISK WARNING -->
+            <div class="mc-results-panel" id="simResults">
+                <p class="mc-placeholder">Upload at least one CSV and press Run Simulation. Your results will appear here.</p>
             </div>
 
         </div>
 
     </div>
-
+    
 </section>
 
 </main>
