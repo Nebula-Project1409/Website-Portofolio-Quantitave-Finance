@@ -1,0 +1,17 @@
+Metrik,Nilai,Satuan
+Periode data,2021-01-04 s/d 2025-12-30,-
+Jumlah hari perdagangan,1204,hari
+Suku bunga bebas risiko,6.0,%
+Jumlah simulasi,1000,simulasi
+Horizon simulasi,100,hari
+Modal awal,10000000,Rp
+Return tahunan portofolio,14.430586372779972,%
+Volatilitas tahunan portofolio,20.506097096561763,%
+Sharpe Ratio portofolio,0.4111258389678414,rasio
+Rata-rata nilai akhir,10671301.89073349,Rp
+Median nilai akhir,10561747.709227629,Rp
+Skenario buruk (P5),8622690.267352186,Rp
+Skenario baik (P95),13075009.40510114,Rp
+Peluang untung,67.7,%
+Peluang rugi,32.3,%
+Value at Risk 95%,1377309.7326478139,Rp
