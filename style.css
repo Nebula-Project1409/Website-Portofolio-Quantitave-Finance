@@ -1014,3 +1014,22 @@ img {
     position: absolute;
     inset: 0;
 }
+
+.hero {
+  position: relative; /* Supaya gambar bisa diatur posisinya */
+  width: 100%;
+  overflow: hidden; /* Supaya gambar tidak keluar batas */
+}
+
+.hero-art {
+  width: 100%; /* Gambar mengikuti lebar layar */
+  height: auto;
+  object-fit: cover; /* Biar gambar tidak gepeng */
+}
+
+.mountain {
+  position: absolute; /* Supaya gambar gunung menempel di belakang */
+  bottom: 0;
+  left: 0;
+  width: 50%; /* Atur ukurannya sesuai selera */
+}
