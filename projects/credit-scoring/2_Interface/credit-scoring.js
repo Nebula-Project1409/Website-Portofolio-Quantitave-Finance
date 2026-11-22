@@ -1040,7 +1040,7 @@ function confusionTable(m, title) {
         "<tr><td>Actual: default</td><td>" + fmtInt(m.fn) + "</td><td>" + fmtInt(m.tp) + "</td></tr></tbody></table></div>";
 }
 
-function evalHtml(rows) {
+function evalHtmlOld(rows) {
     if (batchTargetCol < 0) {
         return '<p class="mc-hint">Tip: if your file has a column with the real outcome (1 = defaulted, 0 = paid), ' +
             'match it under "Actual status" above to see accuracy, AUC, Gini, KS and the ROC curve on your own data.</p>';
@@ -1336,4 +1336,34 @@ function renderBatch(res) {
 
         '<p class="mc-disclaimer">Scores come from models trained on ' + fmtInt(nBorrowers) +
         " borrowers. They are illustrative, depend on the data you upload, and are not a lending decision or a replacement for a bank's own credit policy.</p>";
+}
+
+
+/* ---------- EVALUATION ON YOUR FILE: confusion matrix and ROC curve only ---------- */
+function evalHtml(rows) {
+    if (batchTargetCol < 0) {
+        return '<p class="mc-hint">Tip: if your file has a column with the real outcome (1 = defaulted, 0 = paid), ' +
+            'match it under "Actual status" above to also see the confusion matrix and ROC curve on your own data.</p>';
+    }
+    const ok = rows.filter(r => r.actual === 0 || r.actual === 1);
+    const pos = ok.filter(r => r.actual === 1).length;
+    if (ok.length < 20 || pos === 0 || pos === ok.length) {
+        return '<p class="mc-hint">The actual status column needs at least 20 rows with both 0 (paid) and 1 (defaulted) to evaluate the models.</p>';
+    }
+    const act = ok.map(r => r.actual);
+    const a = evalMetrics(act, ok.map(r => r.p), ambang);
+    const b = ok[0].pRf !== null ? evalMetrics(act, ok.map(r => r.pRf), ambang) : null;
+
+    return '<p class="mc-hint">Your file has ' + fmtInt(ok.length) + " borrowers with a known outcome (" + fmtInt(pos) + " defaulted). " +
+        "The measures in the comparison table above come from the test data held back during training. Below, the same models on your own file. " +
+        "If your borrowers were part of the training data, these results look better than they would on new borrowers.</p>" +
+
+        '<div class="mc-res-two">' +
+        '<div class="mc-chart-card"><h3>Confusion matrix on your file</h3><p class="mc-caption">How many of your borrowers each model classified correctly and incorrectly (default when PD is at least ' + ambang.toFixed(2) + ").</p>" +
+        confusionTable(a, "Logistic Regression") + (b ? confusionTable(b, "Random Forest") : "") + "</div>" +
+        '<div class="mc-chart-card"><h3>ROC curve on your file</h3><p class="mc-caption">The higher and further left the curve, the better the model separates borrowers who default from those who do not.</p>' +
+        rocSvg(a, b) +
+        '<div class="mc-legend"><span><i style="border-color:#682127"></i>Logistic Regression (AUC ' + a.auc.toFixed(3) + ")</span>" +
+        (b ? '<span><i style="border-color:#e08a1e"></i>Random Forest (AUC ' + b.auc.toFixed(3) + ")</span>" : "") +
+        '<span><i class="dash" style="border-color:#a09590"></i>Random guess</span></div></div></div>';
 }
