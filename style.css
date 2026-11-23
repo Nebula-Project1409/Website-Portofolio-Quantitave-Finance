@@ -404,18 +404,19 @@ img {
 .about {
   max-width: 1536px;
   margin: 0 auto;
-  padding: 16px 45px 0;
+  padding: 16px 45px 0; 
   display: grid;
-  grid-template-columns: 345px minmax(0, 1fr) 582px;
+  grid-template-columns: 345px minmax(0, 1fr) 582px; 
   column-gap: 35px;
-  align-items: start;
+  align-items: start; 
 }
 
 .photo {
   width: 345px;
-  height: 230px;
+  height: auto; 
+  object-fit: cover; 
+  padding-top: 24px; 
 }
-
 .about-text {
   padding-top: 24px;
 }
