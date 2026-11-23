@@ -992,8 +992,6 @@ img {
   }
 }
 
-
-
 @media (min-width: 901px) {
   .bottom {
     grid-template-columns: 330px minmax(0, 1fr) 276px !important;
@@ -1014,4 +1012,3 @@ img {
     position: absolute;
     inset: 0;
 }
-
