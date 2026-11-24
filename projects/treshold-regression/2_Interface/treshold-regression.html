@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Scoring <span class="amp">&amp;</span> Default Models | Nebula Project</title>
+    <title>Threshold Regression | Nebula Project</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -42,14 +42,14 @@
 
 <main>
     <section class="mc-hero">
-    <img class="mc-hero-art" src="images/grafik_5_roc_lr_vs_rf.png" alt="ROC curves of Logistic Regression and Random Forest">
+    <!--<img class="mc-hero-art" src="images/grafik_5_roc_lr_vs_rf.png" alt="ROC curves of Logistic Regression and Random Forest">-->
     <div class="mc-hero-inner">
         <span class="mc-hero-tag">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
-            Credit Risk
+            Econometrics
         </span>
-        <h1>Credit Scoring<br>&amp; Probability of Default</h1>
-        <p class="mc-hero-sub">Estimating borrower default risk with statistical and machine learning models.</p>
+        <h1>Threshold<br>Regression</h1>
+        <p class="mc-hero-sub">Modeling relationships that change across regimes when a variable crosses a threshold</p>
         <ul class="mc-hero-chips">
             <li>Python</li>
             <li>scikit-learn</li>
@@ -74,7 +74,7 @@
                     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
                     Concept Video
                 </h2>
-                <p class="mc-card-desc">Learn how credit scoring and probability of default work, and why lenders rely on them.</p>
+                <p class="mc-card-desc">Learn how threshold regression works and when a relationship changes across regimes.</p>
                 <span class="mc-card-cta">Watch Video &rarr;</span>
             </div>
         </a>
@@ -92,22 +92,22 @@ from sklearn.metrics import roc_auc_score</pre>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                     Full Code
                 </h2>
-                <p class="mc-card-desc">Explore the complete Python script that trains and evaluates the credit scoring model.</p>
+                <p class="mc-card-desc">Explore the complete Python script for the threshold regression model.</p>
                 <span class="mc-card-cta">View Code &rarr;</span>
             </div>
         </a>
 
         <a class="mc-card" href="#simulator" data-tab="simulator">
             <div class="mc-card-visual mc-visual-chart" aria-hidden="true">
-            <img src="images/grafik_5_roc_lr_vs_rf.png" alt="">
+            <!-- <img src="images/grafik_5_roc_lr_vs_rf.png" alt=""> -->
             </div>
             <div class="mc-card-body">
                 <h2 class="mc-card-title">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>
                     Try It Yourself
                 </h2>
-                <p class="mc-card-desc">Enter a borrower's profile and see the estimated probability of default.</p>
-                <span class="mc-card-cta">Start Simulation &rarr;</span>
+                <p class="mc-card-desc">Try the model with your own values and see how the regimes differ.</p>
+                <span class="mc-card-cta">Try the Model &rarr;
             </div>
         </a>
 
@@ -362,7 +362,6 @@ python credit_scoring.py</pre>
 
             <p class="mc-hint" id="batchStatus">No file yet.</p>
             <button type="button" class="mc-btn-ghost" id="excelBtn" hidden>Download results as Excel</button>
-            <p class="mc-hint">
             <p class="mc-hint">
                 Upload any CSV with one borrower per row. The columns are matched automatically (English or
                 Indonesian names), and you can correct the matching below. The model uses age, income,

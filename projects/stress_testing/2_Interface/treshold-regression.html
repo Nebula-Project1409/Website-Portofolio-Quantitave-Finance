@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threshold Regression | Nebula Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet" href="credit-scoring.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="navbar-inner">
+        <a class="logo" href="../../../index.html#home" aria-label="Home">
+            <img src="../../../img/logo-ghina.png" alt="Ghina" onerror="this.parentNode.classList.add('no-img');this.remove()">
+        
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="menu" id="menu" aria-label="Main">
+            <a href="../../../index.html#home">Home</a>
+            <a href="../../../index.html#about">About</a>
+            <a href="../../../index.html#education">Education</a>
+            <a class="active" href="../../../projects.html">Projects</a>
+            <a href="../../../index.html#research">Research</a>
+            <a href="../../../index.html#skills">Skills</a>
+            <a href="../../../index.html#contact">Contact</a>
+            <a class="menu-cv" href="#">Download CV</a>
+        </nav>
+        <div class="nav-actions">
+            <a class="btn btn-solid btn-small" href="#">Download CV
+                <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="mc-hero">
+    <!--<img class="mc-hero-art" src="images/grafik_5_roc_lr_vs_rf.png" alt="ROC curves of Logistic Regression and Random Forest">-->
+    <div class="mc-hero-inner">
+        <span class="mc-hero-tag">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
+            Econometrics
+        </span>
+        <h1>Threshold<br>Regression</h1>
+        <p class="mc-hero-sub">Modeling relationships that change across regimes when a variable crosses a threshold</p>
+        <ul class="mc-hero-chips">
+            <li>Python</li>
+            <li>scikit-learn</li>
+            <li>Pandas</li>
+            <li>Matplotlib</li>
+        </ul>
+    </div>
+</section>
+<!-- MONTE CARLO PROJECT TABS -->
+
+<section class="mc-workspace">
+
+        <!-- TAB NAVIGATION: TIGA KARTU -->
+    <div class="mc-cards">
+
+        <a class="mc-card active" href="#concept" data-tab="concept">
+            <div class="mc-card-visual mc-visual-video" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+                    Concept Video
+                </h2>
+                <p class="mc-card-desc">Learn how threshold regression works and when a relationship changes across regimes.</p>
+                <span class="mc-card-cta">Watch Video &rarr;</span>
+            </div>
+        </a>
+
+        <a class="mc-card" href="#code" data-tab="code">
+            <div class="mc-card-visual mc-visual-code" aria-hidden="true">
+                <div class="mc-win-bar"><i></i><i></i><i></i><span>credit_scoring.py</span></div>
+<pre>import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import roc_auc_score</pre>
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    Full Code
+                </h2>
+                <p class="mc-card-desc">Explore the complete Python script for the threshold regression model.</p>
+                <span class="mc-card-cta">View Code &rarr;</span>
+            </div>
+        </a>
+
+        <a class="mc-card" href="#simulator" data-tab="simulator">
+            <div class="mc-card-visual mc-visual-chart" aria-hidden="true">
+            <!-- <img src="images/grafik_5_roc_lr_vs_rf.png" alt=""> -->
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>
+                    Try It Yourself
+                </h2>
+                <p class="mc-card-desc">Try the model with your own values and see how the regimes differ.</p>
+                <span class="mc-card-cta">Try the Model &rarr;
+            </div>
+        </a>
+
+    </div>
+
+
+   
+    
+<!-- TAB 1: CONCEPT VIDEO -->
+<div class="mc-panel active" id="concept">
+
+    <div class="mc-section-heading">
+        <span>01 / LEARN THE MODEL</span>
+        <h2>Understanding Monte Carlo Simulation</h2>
+        <p>
+            Explore the concepts, methodology, and practical applications
+            of Monte Carlo Simulation in financial analysis.
+        </p>
+    </div>
+
+    <div class="mc-video-layout">
+
+        <div class="mc-video-container">
+            <!-- GANTI DENGAN VIDEO NANTI -->
+            <div class="mc-video-placeholder">
+                <span class="mc-play-icon">▶</span>
+                <p>Video Walkthrough</p>
+                <small>Monte Carlo Simulation</small>
+            </div>
+        </div>
+
+        <div class="mc-video-description">
+            <span>VIDEO OVERVIEW</span>
+            <h3>From Random Variables to Financial Decisions</h3>
+            <p>
+                Learn how Monte Carlo Simulation uses repeated random
+                sampling to model uncertainty, estimate potential
+                outcomes, and support financial decision-making.
+            </p>
+            <div class="mc-video-meta">
+                <span>QUANTITATIVE FINANCE</span>
+                <span>MODEL WALKTHROUGH</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mc-learning-materials">
+
+        <div class="mc-subheading">
+            <span>LEARNING MATERIALS</span>
+            <h3>What You Will Learn</h3>
+        </div>
+
+        <div class="mc-learning-grid">
+
+            <article class="mc-concept-card">
+                <span>01</span>
+                <h4>Simulation Fundamentals</h4>
+                <p>
+                    Understand random variables, probability
+                    distributions, and the logic behind Monte Carlo
+                    Simulation.
+                </p>
+            </article>
+
+            <article class="mc-concept-card">
+                <span>02</span>
+                <h4>Financial Model Construction</h4>
+                <p>
+                    Explore how historical returns, volatility,
+                    covariance, and random sampling are used to
+                    construct simulated price paths.
+                </p>
+            </article>
+
+            <article class="mc-concept-card">
+                <span>03</span>
+                <h4>Results & Risk Interpretation</h4>
+                <p>
+                    Learn how to interpret simulation outcomes,
+                    portfolio performance, Value at Risk, and
+                    potential downside exposure.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!-- TAB 2: FULL CODE -->
+            <!-- TAB 2: FULL CODE -->
+    <div class="mc-panel" id="code">
+
+        <div class="mc-section-heading">
+            <span>02 / EXPLORE THE MODEL</span>
+            <h2>Full Code</h2>
+            <p>Explore the complete Python implementation and model results.</p>
+        </div>
+
+        <div class="mc-code-layout">
+
+            <div class="mc-source-code">
+                <div class="mc-code-header">
+                    <h3>credit_scoring.py</h3>
+                    <div class="mc-code-actions">
+                        <button type="button" id="copyCode">Copy Code</button>
+                    </div>
+                </div>
+                <pre><code id="codeText">Loading code…</code></pre>
+            </div>
+
+            <aside class="mc-code-side">
+                <div class="mc-side-card">
+                    <h3>Download and open</h3>
+                    <a class="mc-btn mc-btn-solid" id="downloadCode" href="../1_Model/credit_scoring.py" download="credit_scoring.py">Download credit_scoring.py</a>
+                    <a class="mc-btn mc-btn-outline" href="https://github.com/Nebula-Project1409" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                </div>
+
+                <div class="mc-side-card">
+                    <h3>How to run</h3>
+                    <pre class="mc-cmd">pip install pandas numpy scikit-learn matplotlib seaborn openpyxl
+python credit_scoring.py</pre>
+                </div>
+
+                <div class="mc-side-card">
+                    <h3>What the code does</h3>
+                    <p>
+                        Loads borrower data, cleans it, and splits it into training and test sets
+                        before any preprocessing. It trains a Logistic Regression (the scorecard model)
+                        and a Random Forest, evaluates both with AUC, Gini and KS, converts the
+                        probability of default into a 300–850 credit score with Low, Medium and High
+                        risk levels, and exports the charts and Excel files.
+                    </p>
+                </div>
+            </aside>
+
+        </div>
+
+        <div class="mc-subheading">
+            <span>RESULTS</span>
+            <h3>Results from my analysis</h3>
+        </div>
+        <p class="mc-metrics-note" id="mMeta">Loading results…</p>
+
+        <div class="mc-metrics">
+            <article class="mc-metric"><span>Borrowers analysed</span><strong id="mN">–</strong><small>after cleaning the data</small></article>
+            <article class="mc-metric"><span>Default rate</span><strong id="mDefault">–</strong><small>borrowers who defaulted</small></article>
+            <article class="mc-metric"><span>Training / test</span><strong id="mTrain">–</strong><small>split before preprocessing</small></article>
+            <article class="mc-metric"><span>Classification threshold</span><strong id="mThreshold">–</strong><small>PD above this = predicted default</small></article>
+        </div>
+
+        <div class="mc-res-two">
+            <div class="mc-chart-card">
+                <h3>Model comparison</h3>
+                <p class="mc-caption">Measured on the held-out test data.</p>
+                <table class="mc-result-table">
+                    <thead><tr><th>METRIC</th><th>LOGISTIC REGRESSION</th><th>RANDOM FOREST</th></tr></thead>
+                    <tbody id="modelRows"><tr><td colspan="3">Loading…</td></tr></tbody>
+                </table>
+            </div>
+            <div class="mc-chart-card">
+                <h3>Risk levels</h3>
+                <p class="mc-caption">Credit score 740 and above is Low, 670 and above is Medium, below that is High. The last column is the real default rate in each group.</p>
+                <table class="mc-result-table">
+                    <thead><tr><th>RISK LEVEL</th><th>BORROWERS</th><th>ACTUAL DEFAULT RATE</th></tr></thead>
+                    <tbody id="riskRows"><tr><td colspan="3">Loading…</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mc-code-charts">
+            <div class="mc-chart-card mc-chart-wide">
+                <h3>Correlation Between Variables</h3>
+                <img src="images/grafik_1_korelasi.png" alt="Correlation heatmap of borrower variables">
+                <p class="mc-caption">Shows which variables move together and how each relates to loan default.</p>
+            </div>
+
+            <div class="mc-chart-card mc-chart-wide">
+                <h3>Logistic Regression Evaluation</h3>
+                <img src="images/grafik_2_evaluasi_lr.png" alt="Confusion matrix and ROC curve of the logistic regression">
+                <p class="mc-caption">The confusion matrix counts correct and wrong predictions. The ROC curve shows how well the model separates borrowers who default from those who do not.</p>
+            </div>
+
+            <div class="mc-chart-card">
+                <h3>ROC: Logistic Regression vs Random Forest</h3>
+                <img src="images/grafik_5_roc_lr_vs_rf.png" alt="ROC curves of both models">
+                <p class="mc-caption">The higher and further left the curve, the better the model ranks risky borrowers.</p>
+            </div>
+
+            <div class="mc-chart-card">
+                <h3>Top Features (Random Forest)</h3>
+                <img src="images/grafik_4_importance_rf.png" alt="Ten most important features of the random forest">
+                <p class="mc-caption">The variables the Random Forest relies on most when judging default risk.</p>
+            </div>
+
+            <div class="mc-chart-card mc-chart-wide">
+                <h3>PD and Credit Score Distribution</h3>
+                <img src="images/grafik_3_histogram_pd_skor.png" alt="Distribution of probability of default and credit score">
+                <p class="mc-caption">Borrowers who default should sit at higher PD and lower scores. The dashed lines mark the risk-level boundaries.</p>
+            </div>
+        </div>
+
+    </div>
+
+          <!-- TAB 3: TRY IT YOURSELF -->
+        <!-- TAB 3: TRY IT YOURSELF -->
+    <div class="mc-panel" id="simulator">
+
+        <div class="mc-section-heading">
+            <span>03 / INTERACTIVE EXPERIENCE</span>
+            <h2>Try It Yourself</h2>
+            <p>Upload a CSV of borrowers to score a whole portfolio, or check a single borrower below.</p>
+        </div>
+
+        <!-- 1. CSV BATCH -->
+            <div class="mc-currency">
+            <div class="mc-field">
+                <label class="mc-label" for="curSel">Currency of income and loan amount</label>
+                <select id="curSel">
+                    <option value="USD" selected>US dollars (US$), the currency of the training data</option>
+                    <option value="IDR">Indonesian Rupiah (Rp)</option>
+                </select>
+            </div>
+            <div class="mc-field" id="fxBox" hidden>
+                <label class="mc-label" for="fxRate">Exchange rate (Rp per US$)</label>
+                <input type="text" id="fxRate" value="18.292,95" inputmode="decimal" autocomplete="off" placeholder="e.g. 18.292,95">
+            </div>
+            <p class="mc-hint" id="curHint"></p>
+        </div>
+
+        <div class="mc-batch" id="batch">
+            <div class="mc-subheading">
+                <span>BATCH SCORING</span>
+                <h3>Score many borrowers from a CSV file</h3>
+            </div>
+            <p class="mc-caption">
+                Download the template, fill in one borrower per row, then upload it. Each row gets a
+                probability of default, a credit score and a risk level from the same model.
+            </p>
+
+            <div class="mc-batch-top">
+                <label class="mc-drop" id="batchDrop" for="batchFile">
+                    <strong>Drop a borrower CSV here</strong>
+                    <span>or click to choose · up to 5,000 rows · max 5 MB</span>
+                </label>
+                <input type="file" id="batchFile" accept=".csv" hidden>
+            </div>
+
+            <p class="mc-hint" id="batchStatus">No file yet.</p>
+            <button type="button" class="mc-btn-ghost" id="excelBtn" hidden>Download results as Excel</button>
+            <p class="mc-hint">
+                Upload any CSV with one borrower per row. The columns are matched automatically (English or
+                Indonesian names), and you can correct the matching below. The model uses age, income,
+                employment length, loan amount, interest rate, credit history length, previous default and home
+                ownership. Income and loan amount are read in the currency chosen above.
+            </p>
+            <div id="mapBox"></div>
+            <div id="batchOut"></div>
+        </div>
+
+        <!-- 2. SATU PEMINJAM -->
+        <div class="mc-subheading">
+            <span>SINGLE BORROWER</span>
+            <h3>Or check one borrower</h3>
+        </div>
+
+        <div class="mc-simulator-layout">
+
+            <div class="mc-input-panel">
+                <h3 class="mc-panel-title">Borrower profile</h3>
+
+                <div class="mc-row">
+                    <div class="mc-field">
+                        <label class="mc-label" for="fAge">Age (20–80)</label>
+                        <input type="number" id="fAge" data-f="person_age" value="27" min="20" max="80" step="1">
+                    </div>
+                    <div class="mc-field">
+                        <label class="mc-label" for="fEmp">Employment (years)</label>
+                        <input type="number" id="fEmp" data-f="person_emp_length" value="4" min="0" max="41" step="1">
+                    </div>
+                </div>
+
+                <div class="mc-row">
+                    <div class="mc-field">
+                        <label class="mc-label" for="fIncome">Annual income</label>
+                        <input type="number" id="fIncome" data-f="person_income" value="55000" min="4000" step="1000">
+                    </div>
+                    <div class="mc-field">
+                        <label class="mc-label" for="fHome">Home ownership</label>
+                        <select id="fHome" data-c="person_home_ownership">
+                            <option value="RENT" selected>Rent</option>
+                            <option value="MORTGAGE">Mortgage</option>
+                            <option value="OWN">Own</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mc-row">
+                    <div class="mc-field">
+                        <label class="mc-label" for="fLoan">Loan amount</label>
+                        <input type="number" id="fLoan" data-f="loan_amnt" value="8000" min="500" step="500">
+                    </div>
+                    <div class="mc-field">
+                        <label class="mc-label" for="fRate">Interest rate (%)</label>
+                        <input type="number" id="fRate" data-f="loan_int_rate" value="11" min="5" max="24" step="0.1">
+                    </div>
+                </div>
+
+                <div class="mc-row">
+                    <div class="mc-field">
+                        <label class="mc-label" for="fHist">Credit history (years)</label>
+                        <input type="number" id="fHist" data-f="cb_person_cred_hist_length" value="4" min="2" max="30" step="1">
+                    </div>
+                    <div class="mc-field">
+                        <label class="mc-label" for="fDef">Previous default on file</label>
+                        <select id="fDef" data-f="cb_person_default_on_file_code">
+                            <option value="0" selected>No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <p class="mc-hint">
+                Results update as you type. Leave a field empty to use the typical value from the training data.
+                </p>
+            </div>
+
+            <div class="mc-results-panel" id="simResults">
+                <p class="mc-placeholder">Loading model…</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<script>
+    (function () {
+        var toggle = document.getElementById("menuToggle");
+        var menu = document.getElementById("menu");
+        toggle.addEventListener("click", function () {
+            var open = menu.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+    })();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+<script src="credit-scoring.js"></script>
+</body>
+</html>
