@@ -121,7 +121,7 @@ def calculate_returns(prices):
     monthly_prices = prices.resample("ME").last()
 
     # Calculate percentage changes
-    monthly_returns = monthly_prices.pct_change()
+    monthly_returns = monthly_prices.pct_change(fill_method=None)
 
     monthly_returns = monthly_returns.replace([np.inf, -np.inf], np.nan)
 
@@ -205,26 +205,48 @@ def estimate_capm(monthly_returns, risk_free, company_name, config):
 
     # Calculate excess returns (Rf berubah tiap bulan)
     data["Stock_Excess"] = data["Stock"] - data["RF"]
-
     data["Market_Excess"] = data["Market"] - data["RF"]
+    
     # OLS:
     # Stock Excess Return = Alpha + Beta * Market Excess Return
 
-    x = data["Market_Excess"].values
-    y = data["Stock_Excess"].values
+    X = sm.add_constant(data["Market_Excess"])
+    Y = data["Stock_Excess"]
 
-    beta, alpha = np.polyfit(x, y, 1)
+    model = sm.OLS(Y, X).fit()
+
+    # Regression coefficients
+    alpha = model.params["const"]
+    beta = model.params["Market_Excess"]
+
+    # Goodness of fit
+    r_squared = model.rsquared
+
+    # Standard Error
+    alpha_se = model.bse["const"]
+    beta_se = model.bse["Market_Excess"]
+
+    # t-statistic
+    alpha_t = model.tvalues["const"]
+    beta_t = model.tvalues["Market_Excess"]
+
+    # p-value
+    alpha_p = model.pvalues["const"]
+    beta_p = model.pvalues["Market_Excess"]
+
+    # 95% Confidence Interval
+    ci = model.conf_int(alpha=0.05)
+
+    alpha_ci_lower = ci.loc["const"].iloc[0]
+    alpha_ci_upper = ci.loc["const"].iloc[1]
+
+    beta_ci_lower = ci.loc["Market_Excess"].iloc[0]
+    beta_ci_upper = ci.loc["Market_Excess"].iloc[1]
 
     # Fitted values
-    data["Predicted"] = alpha + beta * data["Market_Excess"]
+    data["Predicted"] = model.fittedvalues
 
-    # R-squared
-    residuals = y - data["Predicted"].values
 
-    ss_res = np.sum(residuals**2)
-    ss_total = np.sum((y - np.mean(y)) ** 2)
-
-    r_squared = 1 - ss_res / ss_total if ss_total != 0 else np.nan
 
     # CAPM expected return
     average_market_return = data["Market"].mean()
@@ -247,24 +269,40 @@ def estimate_capm(monthly_returns, risk_free, company_name, config):
 
     # Historical average annualized stock return
     historical_annual = data["Stock"].mean() * 12
-
+    
     result = {
-        "Company": company_name,
-        "Ticker": stock,
-        "Market Index": market,
-        "Observations": len(data),
-        "Beta": beta,
-        "Alpha Monthly": alpha,
-        "R-Squared": r_squared,
-        "Risk-Free Average": risk_free.reindex(data.index).mean(),
-        "Risk-Free Last": risk_free_annual,
-        "Market Return Annual": average_market_return * 12,
-        "Historical Premium Annual": historical_premium_annual,
-        "Premium Used": premium_used,
-        "Premium Source": premium_source,
-        "CAPM Expected Annual": expected_annual,
-        "Historical Return Annual": historical_annual,
-    }
+    "Company": company_name,
+    "Ticker": stock,
+    "Market Index": market,
+    "Observations": len(data),
+
+    "Beta": beta,
+    "Alpha Monthly": alpha,
+    "R-Squared": r_squared,
+
+    # Alpha Statistical Inference
+    "Alpha SE": alpha_se,
+    "Alpha t-stat": alpha_t,
+    "Alpha p-value": alpha_p,
+    "Alpha CI 95% Lower": alpha_ci_lower,
+    "Alpha CI 95% Upper": alpha_ci_upper,
+
+    # Beta Statistical Inference
+    "Beta SE": beta_se,
+    "Beta t-stat": beta_t,
+    "Beta p-value": beta_p,
+    "Beta CI 95% Lower": beta_ci_lower,
+    "Beta CI 95% Upper": beta_ci_upper,
+
+    "Risk-Free Average": risk_free.reindex(data.index).mean(),
+    "Risk-Free Last": risk_free_annual,
+    "Market Return Annual": average_market_return * 12,
+    "Historical Premium Annual": historical_premium_annual,
+    "Premium Used": premium_used,
+    "Premium Source": premium_source,
+    "CAPM Expected Annual": expected_annual,
+    "Historical Return Annual": historical_annual,
+}
 
     return result, data
 
@@ -299,15 +337,48 @@ def run_analysis():
 
     if not results:
         raise ValueError("No valid CAPM results were produced.")
-
+    
     results_df = pd.DataFrame(results)
+    
+    # ========================================================
+    # EXPORT ALL RESULTS TO EXCEL
+    # ========================================================
 
-    # Save results
-    results_df.to_csv(OUTPUT_DIR / "capm_results.csv", index=False)
+    excel_path = OUTPUT_DIR / "CAPM_Analysis_Results.xlsx"
 
-    monthly_prices.to_csv(OUTPUT_DIR / "monthly_prices.csv")
+    with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
 
-    monthly_returns.to_csv(OUTPUT_DIR / "monthly_returns.csv")
+        # Sheet 1: CAPM Results
+        results_df.to_excel(
+            writer,
+            sheet_name="CAPM Results",
+            index=False
+        )
+
+        # Sheet 2: Monthly Prices
+        monthly_prices.to_excel(
+            writer,
+            sheet_name="Monthly Prices"
+        )
+
+        # Sheet 3: Monthly Returns
+        monthly_returns.to_excel(
+            writer,
+            sheet_name="Monthly Returns"
+        )
+
+        # Sheet 4 onwards: Regression Data
+        for company_name, data in regression_data.items():
+
+            sheet_name = f"{company_name} Regression"
+
+            data.to_excel(
+                writer,
+                sheet_name=sheet_name
+            )
+
+    print(f"\nExcel file saved: {excel_path}")
+
 
     print("\n================ CAPM RESULTS ================")
 
