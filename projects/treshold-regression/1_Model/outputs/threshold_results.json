@@ -1,0 +1,383 @@
+{
+  "meta": {
+    "y": "NPL",
+    "x": [
+      "ESG "
+    ],
+    "controls": [
+      "SIZE ",
+      "CIR",
+      "CAR",
+      "LDR",
+      "LR",
+      "INF"
+    ],
+    "q": "GDP",
+    "N": 35,
+    "n_obs": 238,
+    "countries": [
+      "Indonesia - BRI",
+      "Indonesia - Bank Central Asia (BCA)",
+      "Indonesia - Bank Danamon",
+      "Indonesia - Bank Mandiri",
+      "Indonesia - Bank Negara Indonesia (BNI)",
+      "Indonesia - Bank Tabungan Negara (BTN)",
+      "Indonesia - Permata Bank",
+      "Malaysia - ABMB",
+      "Malaysia - AMMB",
+      "Malaysia - CIMB",
+      "Malaysia - HLB",
+      "Malaysia - Maybank",
+      "Malaysia - Public Bank",
+      "Malaysia - RHB Bank",
+      "Philippines - BDO Unibank",
+      "Philippines - Bank of the Philippine Islands (BPI)",
+      "Philippines - China Bank",
+      "Philippines - Metrobank",
+      "Philippines - Philippines National Bank (PNB)",
+      "Philippines - Security Bank",
+      "Philippines - UnionBank of the Philippines",
+      "Thailand - Bangkok Bank (BBL)",
+      "Thailand - Bank of Ayudhya (Krungsri)",
+      "Thailand - Kasikornbank (KBANK)",
+      "Thailand - Kiatnakin Phatra Bank (KKP)",
+      "Thailand - Krung Thai Bank (KTB)",
+      "Thailand - Siam Commercial Bank (SCB)",
+      "Thailand - TMBThanachart Bank (TTB)",
+      "Vietnam - ACB",
+      "Vietnam - BDV",
+      "Vietnam - MBBank",
+      "Vietnam - Sacombank",
+      "Vietnam - Techcombank",
+      "Vietnam - Vietcombank",
+      "Vietnam - Vietinbank"
+    ],
+    "bootstrap_replications": 500,
+    "bootstrap_scheme": "iid"
+  },
+  "linear_fe": {
+    "coefficients": [
+      {
+        "variable": "ESG ",
+        "coef": -0.005240768795985382,
+        "std_err": 0.004656135360217203,
+        "t_stat": -1.125561950102092,
+        "p_value": 0.2617273417927205,
+        "ci_low": -0.014423325273507965,
+        "ci_high": 0.003941787681537202,
+        "sig": "",
+        "se_clustered": 0.005206894146381462,
+        "p_clustered": 0.31541331325673205
+      },
+      {
+        "variable": "SIZE ",
+        "coef": -0.15879247485834885,
+        "std_err": 0.2726574620905988,
+        "t_stat": -0.5823881497348683,
+        "p_value": 0.5609746073463593,
+        "ci_low": -0.6965114952409741,
+        "ci_high": 0.37892654552427646,
+        "sig": "",
+        "se_clustered": 0.4886437161966947,
+        "p_clustered": 0.7455535873278379
+      },
+      {
+        "variable": "CIR",
+        "coef": 0.06921545790751701,
+        "std_err": 0.0575950076027968,
+        "t_stat": 1.201761416282128,
+        "p_value": 0.23090600772207773,
+        "ci_low": -0.044370030747897235,
+        "ci_high": 0.18280094656293128,
+        "sig": "",
+        "se_clustered": 0.08278479999991818,
+        "p_clustered": 0.4041229806003245
+      },
+      {
+        "variable": "CAR",
+        "coef": -0.07294283126388115,
+        "std_err": 0.037152189189888774,
+        "t_stat": -1.9633521699370828,
+        "p_value": 0.051019721142916696,
+        "ci_low": -0.14621219504024768,
+        "ci_high": 0.00032653251248539183,
+        "sig": "*",
+        "se_clustered": 0.07597823288985198,
+        "p_clustered": 0.3382133440389321
+      },
+      {
+        "variable": "LDR",
+        "coef": 0.011773682336340512,
+        "std_err": 0.010146234177488606,
+        "t_stat": 1.1603992309247815,
+        "p_value": 0.2472977564767893,
+        "ci_low": -0.008236124329721026,
+        "ci_high": 0.03178348900240205,
+        "sig": "",
+        "se_clustered": 0.02653732599088973,
+        "p_clustered": 0.6577741917050524
+      },
+      {
+        "variable": "LR",
+        "coef": 3.704177042982362,
+        "std_err": 1.7637441010300665,
+        "t_stat": 2.1001782746255757,
+        "p_value": 0.036992448793562546,
+        "ci_low": 0.2258245968777075,
+        "ci_high": 7.182529489087017,
+        "sig": "**",
+        "se_clustered": 1.1528422464574777,
+        "p_clustered": 0.001535381098873474
+      },
+      {
+        "variable": "INF",
+        "coef": -0.010979181459896063,
+        "std_err": 0.01142381134134013,
+        "t_stat": -0.9610786743444323,
+        "p_value": 0.33769674709132247,
+        "ci_low": -0.03350855071464327,
+        "ci_high": 0.011550187794851147,
+        "sig": "",
+        "se_clustered": 0.00980067505567428,
+        "p_clustered": 0.26397912774032883
+      }
+    ],
+    "ssr": 11.90117665169644,
+    "rmse": 0.2236178524060432,
+    "r2_within": 0.32998966349015046
+  },
+  "threshold": {
+    "gamma": 4.3,
+    "ci": [
+      4.3,
+      5.0
+    ],
+    "ssr": 10.898642241570197,
+    "rmse": 0.21399208971450084,
+    "r2_within": 0.3864301682528153,
+    "n_regime1": 105,
+    "n_regime2": 133,
+    "coefficients": [
+      {
+        "variable": "ESG  | q <= gamma",
+        "coef": 0.0002478126463686392,
+        "std_err": 0.004651298176479559,
+        "t_stat": 0.053278168151370126,
+        "p_value": 0.9575648164727215,
+        "ci_low": -0.00892549646094187,
+        "ci_high": 0.009421121753679148,
+        "sig": "",
+        "se_clustered": 0.004687195970614847,
+        "p_clustered": 0.9578895090806748
+      },
+      {
+        "variable": "ESG  | q > gamma",
+        "coef": -0.004234527751836248,
+        "std_err": 0.004473433162252983,
+        "t_stat": -0.9465946172097464,
+        "p_value": 0.3450169030857486,
+        "ci_low": -0.013057050757510185,
+        "ci_high": 0.00458799525383769,
+        "sig": "",
+        "se_clustered": 0.00522209712034339,
+        "p_clustered": 0.41841946648008205
+      },
+      {
+        "variable": "SIZE ",
+        "coef": -0.42677103404130534,
+        "std_err": 0.26913241750800165,
+        "t_stat": -1.5857288318996983,
+        "p_value": 0.11442113007332992,
+        "ci_low": -0.9575550781782564,
+        "ci_high": 0.10401301009564567,
+        "sig": "",
+        "se_clustered": 0.5180076309681851,
+        "p_clustered": 0.4110198495089863
+      },
+      {
+        "variable": "CIR",
+        "coef": 0.0456693639890664,
+        "std_err": 0.05553591277436647,
+        "t_stat": 0.8223393063622404,
+        "p_value": 0.4118882169450626,
+        "ci_low": -0.06385878817543003,
+        "ci_high": 0.15519751615356284,
+        "sig": "",
+        "se_clustered": 0.04411759117182615,
+        "p_clustered": 0.3018698980288311
+      },
+      {
+        "variable": "CAR",
+        "coef": -0.04408097035733849,
+        "std_err": 0.036289584120960734,
+        "t_stat": -1.2147003451570964,
+        "p_value": 0.22594924983662068,
+        "ci_low": -0.11565143517954422,
+        "ci_high": 0.027489494464867245,
+        "sig": "",
+        "se_clustered": 0.08634372312216639,
+        "p_clustered": 0.6102583820261341
+      },
+      {
+        "variable": "LDR",
+        "coef": 0.02170366191369355,
+        "std_err": 0.01001272425565137,
+        "t_stat": 2.1676080714440524,
+        "p_value": 0.0314002329488377,
+        "ci_low": 0.0019565265724641075,
+        "ci_high": 0.041450797254923,
+        "sig": "**",
+        "se_clustered": 0.028381771412810796,
+        "p_clustered": 0.4453720839871334
+      },
+      {
+        "variable": "LR",
+        "coef": 0.03897901243181323,
+        "std_err": 1.9005975042555454,
+        "t_stat": 0.020508820170781566,
+        "p_value": 0.9836584460135207,
+        "ci_low": -3.7093870852916657,
+        "ci_high": 3.787345110155292,
+        "sig": "",
+        "se_clustered": 2.283063037866358,
+        "p_clustered": 0.9863957376585409
+      },
+      {
+        "variable": "INF",
+        "coef": 0.00934657406265521,
+        "std_err": 0.011964738430419694,
+        "t_stat": 0.7811766313998187,
+        "p_value": 0.4356459701144848,
+        "ci_low": -0.014250331542185746,
+        "ci_high": 0.03294347966749617,
+        "sig": "",
+        "se_clustered": 0.00522377461248955,
+        "p_clustered": 0.07512857119098035
+      }
+    ],
+    "differences": [
+      {
+        "variable": "ESG ",
+        "coef_regime1": 0.0002478126463686392,
+        "coef_regime2": -0.004234527751836248,
+        "difference": 0.004482340398204887,
+        "t_stat": 4.23526658003721,
+        "p_value": 3.5161187399764575e-05
+      }
+    ],
+    "grid": {
+      "gamma": [
+        2.5,
+        2.6,
+        2.7,
+        2.9,
+        3.1,
+        3.6,
+        3.7,
+        4.3,
+        5.0,
+        5.1,
+        5.2,
+        5.3,
+        5.5,
+        5.6,
+        5.7
+      ],
+      "ssr": [
+        11.85224872354704,
+        11.891062770506768,
+        11.901111044677602,
+        11.804375061563821,
+        11.562559264781552,
+        11.38084445562701,
+        11.468187905574622,
+        10.898642241570197,
+        11.29103084397967,
+        11.359508174289463,
+        11.79640547771955,
+        11.777284744854978,
+        11.7078678366328,
+        11.694210435108701,
+        11.75484995107907
+      ],
+      "lr": [
+        17.762039669760664,
+        18.484996838018848,
+        18.672157734896363,
+        16.870336541317265,
+        12.366233584385231,
+        8.981582043327082,
+        10.608456285674059,
+        0.0,
+        7.308698140883899,
+        8.584168767845714,
+        16.721893690866008,
+        16.36574760537446,
+        15.072776237312404,
+        14.818391108601842,
+        15.9478732467559
+      ]
+    }
+  },
+  "test": {
+    "sup_f": 18.673379742604066,
+    "p_value": 0.001996007984031936,
+    "critical_values": {
+      "90%": 7.29804631318049,
+      "95%": 8.97399469137108,
+      "99%": 13.835018238593266
+    }
+  },
+  "comparison": [
+    {
+      "index": "Number of slope parameters (incl. gamma)",
+      "Linear FE": "7",
+      "Threshold FE": "9"
+    },
+    {
+      "index": "SSR (within)",
+      "Linear FE": "11.90117665169644",
+      "Threshold FE": "10.898642241570197"
+    },
+    {
+      "index": "RMSE",
+      "Linear FE": "0.2236178524060432",
+      "Threshold FE": "0.21399208971450084"
+    },
+    {
+      "index": "R-squared within",
+      "Linear FE": "0.32998966349015046",
+      "Threshold FE": "0.3864301682528153"
+    },
+    {
+      "index": "AIC (heuristic)",
+      "Linear FE": "-698.9607492352975",
+      "Threshold FE": "-715.9045248109344"
+    },
+    {
+      "index": "BIC (heuristic)",
+      "Linear FE": "-674.6548545195972",
+      "Threshold FE": "-684.6540887478911"
+    },
+    {
+      "index": "Threshold gamma",
+      "Linear FE": null,
+      "Threshold FE": "4.3"
+    },
+    {
+      "index": "Obs in regime 1 / regime 2",
+      "Linear FE": "-",
+      "Threshold FE": "105 / 133"
+    },
+    {
+      "index": "Sup-F statistic",
+      "Linear FE": null,
+      "Threshold FE": "18.673379742604066"
+    },
+    {
+      "index": "Bootstrap p-value",
+      "Linear FE": null,
+      "Threshold FE": "0.001996007984031936"
+    }
+  ]
+}

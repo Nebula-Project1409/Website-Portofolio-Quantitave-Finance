@@ -1,0 +1,8 @@
+,test,H0,H1,statistic,p_value,decision_5pct,note
+0,F-test for fixed effects (Chow / redundant fixed effects),all country intercepts are equal (pooled OLS is enough),country intercepts differ (use fixed effects),50.9240735161877,1.2210217898223112e-79,reject H0,
+1,Overall F-test of the FE model,all slope coefficients are zero,at least one slope differs from zero,13.790400049430257,1.7794537548234385e-14,reject H0,
+2,Breusch-Pagan LM test for random effects,variance of country effects is zero (pooled OLS is enough),country effects exist (use RE or FE),310.9117473648285,1.3823168179810625e-69,reject H0,
+3,Hausman test (FE vs RE),random effects are consistent (country effects uncorrelated with X),country effects correlated with X (use fixed effects),62.57822554043676,4.6042967253720874e-11,reject H0,
+4,"Modified Wald test (groupwise heteroskedasticity, FE residuals)",equal error variance across countries,error variance differs across countries,94788.33881021827,0.0,reject H0,low power and size distortions when T is small
+5,Wooldridge serial-correlation test,no first-order serial correlation in the idiosyncratic errors,first-order serial correlation present,0.24138571321453883,0.6263637777061817,do not reject H0,"estimated rho(differenced) = -0.590; clustered by country, so unreliable when N is small"
+6,Pesaran CD test (cross-sectional dependence),residuals are cross-sectionally independent,countries share common shocks,5.999934552752119,1.973970745867708e-09,reject H0,"countries often share global shocks (e.g. 2008, 2020); a rejection is common and matters for the bootstrap, which assumes independent draws"

@@ -1,0 +1,37 @@
+SUMMARY OF FINDINGS
+
+Sample: 35 countries, 238 observations. Y = NPL; X = ESG ; q = GDP.
+
+Linear (fixed effects) results:
+
+ESG : coefficient -0.0052 (negative, not statistically significant). A one-unit increase in ESG  is associated with a -0.0052-unit change in NPL, holding the other regressors and the country effect constant. This is an association, not proof of causation.
+
+SIZE : coefficient -0.1588 (negative, not statistically significant). A one-unit increase in SIZE  is associated with a -0.1588-unit change in NPL, holding the other regressors and the country effect constant. This is an association, not proof of causation.
+
+CIR: coefficient +0.0692 (positive, not statistically significant). A one-unit increase in CIR is associated with a +0.0692-unit change in NPL, holding the other regressors and the country effect constant. This is an association, not proof of causation.
+
+CAR: coefficient -0.0729 (negative, significant at the 10% level). A one-unit increase in CAR is associated with a -0.0729-unit change in NPL, holding the other regressors and the country effect constant. This is an association, not proof of causation.
+
+LDR: coefficient +0.0118 (positive, not statistically significant). A one-unit increase in LDR is associated with a +0.0118-unit change in NPL, holding the other regressors and the country effect constant. This is an association, not proof of causation.
+
+LR: coefficient +3.7042 (positive, significant at the 5% level). A one-unit increase in LR is associated with a +3.7042-unit change in NPL, holding the other regressors and the country effect constant. This is an association, not proof of causation.
+
+INF: coefficient -0.0110 (negative, not statistically significant). A one-unit increase in INF is associated with a -0.0110-unit change in NPL, holding the other regressors and the country effect constant. This is an association, not proof of causation.
+
+Threshold results:
+
+The estimated threshold in GDP is gamma = 4.300 (approx. 95% interval 4.300 to 5.000). Regime 1 (GDP <= 4.300) has 105 observations from 35 countries; regime 2 (GDP > 4.300) has 133 observations from 28 countries.
+
+ESG : a one-unit rise is associated with a +0.0002 change in NPL when GDP <= 4.300 (p = 0.958) and a -0.0042 change when GDP > 4.300 (p = 0.345). The sign changes between regimes. The difference between regimes is statistically significant (p = 0.000, conditional on the estimated gamma).
+
+Statistical decision: The data support a threshold effect (bootstrap p = 0.002 < 0.05).
+
+Managerial implications (only what the estimates support):
+
+Early-warning monitoring: track GDP against the estimated threshold (4.30); the sensitivity of NPL to the other variables differs on either side of it.
+
+Stress testing: calibrate shocks to ESG  separately by regime; the estimated effect is larger in regime 2 (diff. p = 0.000).
+
+Credit-risk monitoring and risk appetite: use the thresholds as a screening signal, not as a mechanical rule; the estimate comes from a small macro sample and has sampling uncertainty.
+
+Limitations: association, not causation; small N and short T limit inference; results depend on the variable choice, trimming and the bootstrap scheme.
