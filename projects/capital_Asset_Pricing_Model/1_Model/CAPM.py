@@ -20,7 +20,7 @@ import seaborn as sns
 # 1. CONFIGURATION
 # ============================================================
 
-START_DATE = "2000-01-01"
+START_DATE = "2013-01-01"
 END_DATE = "2026-01-01"  # End date is exclusive
 
 OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
@@ -35,7 +35,9 @@ TICKERS = {
     "ASTRA": {"stock": "ASII.JK", "market": "^JKSE", "risk_free_annual": 0.05},
 }
 
+# File imbal hasil obligasi (risk-free), disimpan di folder data/ di samping CAPM.py
 MARKET_PREMIUM_ANNUAL = None
+RF_FILE = Path(__file__).resolve().parent / "data" / "Data Historis Imbal Hasil Obligasi Indonesia 3 Bulan (1).csv"
 
 sns.set_theme(style="whitegrid")
 
@@ -124,18 +126,54 @@ def calculate_returns(prices):
 
     return monthly_prices, monthly_returns
 
+# ============================================================
+# 3b. LOAD RISK-FREE RATE (BOND YIELD)
+# ============================================================
+
+
+def load_risk_free():
+
+    rf = pd.read_csv(RF_FILE, encoding="utf-8-sig", dtype=str)
+
+    # Format Indonesia: tanggal DD/MM/YYYY, desimal memakai koma ("6,346" = 6,346%)
+    rf["Date"] = pd.to_datetime(rf["Tanggal"], format="%d/%m/%Y")
+    rf["Yield"] = rf["Terakhir"].str.replace(",", ".", regex=False).astype(float) / 100
+
+    # Tanggal di file = tanggal 1 tiap bulan; ubah ke akhir bulan
+    # supaya cocok dengan resample("ME") pada return saham
+    rf["Date"] = rf["Date"] + pd.offsets.MonthEnd(0)
+
+    return rf.sort_values("Date").set_index("Date")["Yield"]
+
+
+def check_risk_free(risk_free, monthly_returns):
+
+    months = monthly_returns.dropna(how="all").index
+    missing = months.difference(risk_free.index)
+
+    print("\nRisk-free data (bond yield, annual):")
+    print(f"  File period  : {risk_free.index.min().date()} to {risk_free.index.max().date()}")
+    print(f"  Analysis     : {months.min().date()} to {months.max().date()} ({len(months)} months)")
+    print(f"  Yield range  : {risk_free.min():.2%} to {risk_free.max():.2%}")
+    print(f"  Average      : {risk_free.reindex(months).mean():.2%}")
+    print(f"  Last month   : {risk_free.reindex(months).iloc[-1]:.2%}")
+
+    if len(missing) > 0:
+        raise ValueError(
+            f"Risk-free data is missing for {len(missing)} analysis months, "
+            f"for example: {[d.date() for d in missing[:3]]}"
+        )
+
 
 # ============================================================
 # 4. CAPM ESTIMATION USING OLS
 # ============================================================
 
 
-def estimate_capm(monthly_returns, company_name, config):
+def estimate_capm(monthly_returns, risk_free, company_name, config):
 
     stock = config["stock"]
     market = config["market"]
-
-    risk_free_annual = config["risk_free_annual"]
 
     if stock not in monthly_returns.columns:
         print(f"\nMissing stock data: {stock}")
@@ -146,26 +184,28 @@ def estimate_capm(monthly_returns, company_name, config):
         return None
 
     # Align stock and market returns
+    # Risk-free bulanan (yield tahunan -> bulanan). Pakai yield akhir bulan SEBELUMNYA,
+    # karena itulah suku bunga yang diketahui investor di awal bulan return tersebut.
+    risk_free_monthly = ((1 + risk_free.shift(1, freq="ME")) ** (1 / 12) - 1).rename("RF")
+
+    # Align stock, market, and risk-free data
     data = pd.concat(
         [
             monthly_returns[stock].rename("Stock"),
             monthly_returns[market].rename("Market"),
+            risk_free_monthly,
         ],
         axis=1,
+        sort=True,
     ).dropna()
 
-    if len(data) < 12:
-        print(f"Not enough observations for {company_name}")
-        return None
+    # Rf untuk expected return = yield terbaru di akhir periode data
+    risk_free_annual = risk_free.reindex(data.index).iloc[-1]
 
-    # Convert annual risk-free rate into monthly rate
-    risk_free_monthly = ((1 + risk_free_annual) ** (1 / 12)) - 1
+    # Calculate excess returns (Rf berubah tiap bulan)
+    data["Stock_Excess"] = data["Stock"] - data["RF"]
 
-    # Calculate excess returns
-    data["Stock_Excess"] = data["Stock"] - risk_free_monthly
-
-    data["Market_Excess"] = data["Market"] - risk_free_monthly
-
+    data["Market_Excess"] = data["Market"] - data["RF"]
     # OLS:
     # Stock Excess Return = Alpha + Beta * Market Excess Return
 
@@ -188,8 +228,8 @@ def estimate_capm(monthly_returns, company_name, config):
     # CAPM expected return
     average_market_return = data["Market"].mean()
 
-    historical_premium_annual = (average_market_return - risk_free_monthly) * 12
-
+    historical_premium_annual = data["Market_Excess"].mean() * 12
+        
     if historical_premium_annual <= 0 and MARKET_PREMIUM_ANNUAL is None:
         print(f"[WARNING] {company_name}: premi pasar historis = "
               f"{historical_premium_annual:.2%} (<= 0). CAPM dengan premi ini tidak "
@@ -215,7 +255,8 @@ def estimate_capm(monthly_returns, company_name, config):
         "Beta": beta,
         "Alpha Monthly": alpha,
         "R-Squared": r_squared,
-        "Risk-Free Annual": risk_free_annual,
+        "Risk-Free Average": risk_free.reindex(data.index).mean(),
+        "Risk-Free Last": risk_free_annual,
         "Market Return Annual": average_market_return * 12,
         "Historical Premium Annual": historical_premium_annual,
         "Premium Used": premium_used,
@@ -237,14 +278,16 @@ def run_analysis():
     prices = download_data()
 
     monthly_prices, monthly_returns = calculate_returns(prices)
+    
+    risk_free = load_risk_free()
+    check_risk_free(risk_free, monthly_returns)
 
     results = []
     regression_data = {}
 
     for company_name, config in TICKERS.items():
 
-        output = estimate_capm(monthly_returns, company_name, config)
-
+        output = estimate_capm(monthly_returns, risk_free, company_name, config)
         if output is None:
             continue
 
@@ -369,7 +412,7 @@ def plot_monthly_returns(monthly_returns):
 
     axes[-1].set_xlabel("Date")
 
-    fig.suptitle("Monthly Stock Returns", fontsize=15, fontweight="bold")
+    #fig.suptitle("Monthly Stock Returns", fontsize=15, fontweight="bold")
 
     plt.tight_layout()
 
@@ -392,7 +435,11 @@ def plot_capm_regression(regression_data, results_df):
     n_rows = int(np.ceil(len(companies) / n_cols))
 
     fig, axes = plt.subplots(
-        n_rows, n_cols, figsize=(7 * n_cols, 5.5 * n_rows), squeeze=False
+        n_rows,
+        n_cols,
+        figsize=(7 * n_cols, 5.5 * n_rows),
+        squeeze=False,
+        constrained_layout=True,
     )
 
     flat_axes = axes.ravel()
@@ -438,8 +485,6 @@ def plot_capm_regression(regression_data, results_df):
     # Sembunyikan kotak kosong jika jumlah perusahaan ganjil
     for ax in flat_axes[len(companies):]:
         ax.axis("off")
-
-    plt.tight_layout()
 
     plt.savefig(OUTPUT_DIR / "03_capm_regression.png", dpi=300)
 
