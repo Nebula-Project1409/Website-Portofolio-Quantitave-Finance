@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Asset Pricing Model (CAPM) | Nebula Project</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet" href="capm.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="navbar-inner">
+        <a class="logo" href="../../../index.html#home" aria-label="Home">
+            <img src="../../../img/logo-ghina.png" alt="Ghina" onerror="this.parentNode.classList.add('no-img');this.remove()">
+        
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="menu" id="menu" aria-label="Main">
+            <a href="../../../index.html#home">Home</a>
+            <a href="../../../index.html#about">About</a>
+            <a href="../../../index.html#education">Education</a>
+            <a class="active" href="../../../projects.html">Projects</a>
+            <a href="../../../index.html#research">Research</a>
+            <a href="../../../index.html#skills">Skills</a>
+            <a href="../../../index.html#contact">Contact</a>
+            <a class="menu-cv" href="#">Download CV</a>
+        </nav>
+        <div class="nav-actions">
+            <a class="btn btn-solid btn-small" href="#">Download CV
+                <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="mc-hero">
+
+    <!-- hero image: CAPM chart later -->
+    <div class="mc-hero-inner">
+        <span class="mc-hero-tag">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
+            Asset Pricing
+        </span>
+        <h1>Capital Asset<br>Pricing Model (CAPM)</h1>
+        <p class="mc-hero-sub">Estimating beta and the expected return of a stock from its risk relative to the market.</p>
+        <ul class="mc-hero-chips">
+            <li>Python</li>
+            <li>NumPy</li>
+            <li>Pandas</li>
+            <li>Matplotlib</li>
+        </ul>
+    </div>
+</section>
+
+
+<section class="mc-workspace">
+
+        <!-- TAB NAVIGATION: TIGA KARTU -->
+    <div class="mc-cards">
+
+        <a class="mc-card active" href="#concept" data-tab="concept">
+            <div class="mc-card-visual mc-visual-video" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+                    Concept Video
+                </h2>
+                <p class="mc-card-desc">Learn how CAPM links risk and return, and what beta tells an investor</p>
+                <span class="mc-card-cta">Watch Video &rarr;</span>
+            </div>
+        </a>
+
+        <a class="mc-card" href="#code" data-tab="code">
+            <div class="mc-card-visual mc-visual-code" aria-hidden="true">
+                <div class="mc-win-bar"><i></i><i></i><i></i><span>CAPM.py</span></div>
+<pre>import statsmodels.api as sm
+import pandas as pd
+import yfinance as yf
+
+# (R_i - Rf) = Alpha + Beta * (R_m - Rf)</pre>
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    Full Code
+                </h2>
+                <p class="mc-card-desc">Explore the complete Python script that estimates beta with OLS and the CAPM expected return.</p>
+                <span class="mc-card-cta">View Code &rarr;</span>
+            </div>
+        </a>
+
+        <a class="mc-card" href="#simulator" data-tab="simulator">
+            <div class="mc-card-visual mc-visual-chart" aria-hidden="true">
+                <!-- card image: CAPM chart later -->
+            </div>
+            <div class="mc-card-body">
+                <h2 class="mc-card-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>
+                    Try It Yourself
+                </h2>
+                <p class="mc-card-desc">Upload your own stock and market prices and estimate beta and expected return.</p>
+                <span class="mc-card-cta">Try CAPM &rarr;</span>
+            </div>
+        </a>
+
+    </div>
+
+
+    <!-- TAB 1: CONCEPT VIDEO -->
+    
+<!-- TAB 1: CONCEPT VIDEO -->
+<div class="mc-panel active" id="concept">
+
+    <div class="mc-section-heading">
+        <span>01 / LEARN THE MODEL</span>
+        <h2>Understanding CAPM</h2>
+        <p>
+            Explore the concepts, methodology, and practical applications
+            of CAPM in financial analysis.
+        </p>
+    </div>
+
+    <div class="mc-video-layout">
+
+        <div class="mc-video-container">
+            <!-- GANTI DENGAN VIDEO NANTI -->
+            <div class="mc-video-placeholder">
+                <span class="mc-play-icon">▶</span>
+                <p>Video Walkthrough</p>
+                <small>CAPM</small>
+            </div>
+        </div>
+
+        <div class="mc-video-description">
+            <span>VIDEO OVERVIEW</span>
+            <h3>From Historical Stock price to Financial Decisions</h3>
+            <p>
+              Examining the relationship between systematic risk and expected asset returns using CAPM.
+            </p>
+            <div class="mc-video-meta">
+                <span>QUANTITATIVE FINANCE</span>
+                <span>MODEL WALKTHROUGH</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mc-learning-materials">
+
+        <div class="mc-subheading">
+            <span>LEARNING MATERIALS</span>
+            <h3>What You Will Learn</h3>
+        </div>
+
+        <div class="mc-learning-grid">
+
+            <article class="mc-concept-card">
+                <span>01</span>
+                <h4>Risk and Return</h4>
+                <p>
+                    Understand systematic and unsystematic risk, and why CAPM rewards only the risk that cannot be diversified away.
+                </p>
+            </article>
+
+            <article class="mc-concept-card">
+                <span>02</span>
+                <h4>Estimating Beta</h4>
+                <p>
+                    See how the monthly excess returns of a stock and the market are regressed with OLS to estimate alpha and beta.
+                </p>
+            </article>
+
+            <article class="mc-concept-card">
+                <span>03</span>
+                <h4>Result of Expected Return and Interpretation</h4>
+                <p>
+                    Learn how beta and the market risk premium give the expected return, and how to read R-squared, t-statistics and confidence intervals.
+            </article>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!-- TAB 2: FULL CODE -->
+        <!-- TAB 2: FULL CODE -->
+    <div class="mc-panel" id="code">
+
+        <div class="mc-section-heading">
+            <span>02 / EXPLORE THE MODEL</span>
+            <h2>Full Code</h2>
+            <p>Explore the complete Python implementation and simulation results.</p>
+        </div>
+
+        <!-- KODE (kiri) + SIDEBAR (kanan) -->
+        <div class="mc-code-layout">
+
+            <div class="mc-source-code">
+                <div class="mc-code-header">
+                    <h3>CAPM.py</h3>
+                    <div class="mc-code-actions">
+                        <button type="button" id="copyCode">Copy Code</button>
+                    </div>
+                </div>
+                <pre><code id="codeText">Loading code…</code></pre>
+            </div>
+
+            <aside class="mc-code-side">
+                <div class="mc-side-card">
+                    <h3>Download and open</h3>
+                    <a class="mc-btn mc-btn-solid" id="downloadCode" href="../1_Model/CAPM.py" download="CAPM.py">Download CAPM.py</a>
+                    <a class="mc-btn mc-btn-outline" href="https://github.com/Nebula-Project1409" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                </div>
+
+                <div class="mc-side-card">
+                    <h3>How to run</h3>
+                    <pre class="mc-cmd">pip install yfinance numpy pandas matplotlib scipy
+python CAPM.py</pre>
+                </div>
+
+                <div class="mc-side-card">
+                    <h3>What the code does</h3>
+                    <p>
+                        Downloads daily prices of ASII, BBCA, BMRI and INDF (2021–2025),
+                        computes returns and covariance, finds Markowitz maximum-Sharpe
+                        weights (max 40% per stock), simulates 1,000 correlated price paths
+                        over 100 trading days, then reports the probability of profit,
+                        Value at Risk, and the charts below.
+                    </p>
+                </div>
+            </aside>
+
+        </div>
+
+        <!-- HASIL -->
+        <div class="mc-subheading">
+            <span>RESULTS</span>
+            <h3>Results from my analysis</h3>
+        </div>
+        <p class="mc-metrics-note" id="mMeta">Loading results…</p>
+         
+        <p class="mc-hint">
+            Data: daily prices from Yahoo Finance, adjusted for dividends and stock splits.
+            Weights come from Markowitz maximum-Sharpe optimization (risk-free rate 6%, maximum 40% per stock).
+        </p>
+        <div class="mc-metrics">
+            <article class="mc-metric">
+                <span>Probability of profit</span>
+                <strong id="mProfit">–</strong>
+                <small>paths ending above capital</small>
+            </article>
+            <article class="mc-metric">
+                <span>Probability of loss</span>
+                <strong id="mLoss">–</strong>
+                <small>paths ending below capital</small>
+            </article>
+            <article class="mc-metric">
+                <span>Value at Risk 95%</span>
+                <strong id="mVar">–</strong>
+                <small id="mVarNote">of the initial capital</small>
+            </article>
+                <article class="mc-metric">
+                <span>Expected Shortfall 95%</span>
+                <strong id="mEs">–</strong>
+                <small id="mEsNote">average of the worst 5%</small>
+            </article>
+        </div>
+        <p class="mc-key" id="mKey"></p>
+
+        <div class="mc-metrics">
+            <article class="mc-metric"><span>Average final value</span><strong class="money" id="mAvg">–</strong><small>mean of all simulated paths</small></article>
+            <article class="mc-metric"><span>Median final value</span><strong class="money" id="mMed">–</strong><small>half of the paths end above</small></article>
+            <article class="mc-metric"><span>Bad scenario (P5)</span><strong class="money neg" id="mP5">–</strong><small>only 5% of paths end lower</small></article>
+            <article class="mc-metric"><span>Good scenario (P95)</span><strong class="money" id="mP95">–</strong><small>only 5% of paths end higher</small></article>
+        </div>
+
+        <div class="mc-code-charts">
+            <div class="mc-chart-card">
+                <h3>Simulated Price Paths</h3>
+                <img src="images/grafik_jalur_monte_carlo.png" alt="Simulated portfolio paths with mean and percentile lines">
+                        <p class="mc-caption">Each thin line is one simulated future of the portfolio. The black line is the average, the red and green dashed lines are the 5th and 95th percentiles, and the dotted line is the initial capital.</p>
+            </div>
+
+            <div class="mc-chart-card">
+                <h3>Final Value Distribution</h3>
+                <img src="images/grafik_sebaran_nilai_akhir.png" alt="Histogram of final portfolio values">
+                       <p class="mc-caption">Where all simulated paths end. The dashed lines mark the 5th and 95th percentiles, and the solid lines mark the median and the average.</p>
+            </div>
+
+            <div class="mc-chart-card mc-chart-wide">
+                <h3>Stock Comparison and Markowitz Weights</h3>
+                <img src="images/grafik_perbandingan_saham.png" alt="Annual return, volatility, Sharpe ratio and weights per stock">
+                        <p class="mc-caption">Each stock's annual return, volatility and Sharpe ratio, and the weight Markowitz assigns to it.</p>
+            </div>
+        </div>
+
+    </div>
+    
+
+       <!-- TAB 3: TRY IT YOURSELF -->
+    <div class="mc-panel" id="simulator">
+
+        <div class="mc-section-heading">
+            <span>03 / INTERACTIVE EXPERIENCE</span>
+            <h2>Try It Yourself</h2>
+            <p>Upload your own stock and market prices and estimate beta and expected return.</p>
+        </div>
+
+        <div class="mc-simulator-layout">
+
+            <div class="mc-input-panel">
+
+                <div class="mc-field">
+                    <span class="mc-label">1. Upload stock data (CSV, one stock per file)</span>
+                    <label class="mc-drop" id="dropZone" for="csvFiles">
+                        <strong>Drop CSV files here</strong>
+                        <span>or click to choose · Investing.com or Yahoo Finance · max 10 files</span>
+                    </label>
+                    <input type="file" id="csvFiles" accept=".csv" multiple hidden>
+                    <ul class="mc-file-list" id="fileList"></ul>
+                    <p class="mc-hint" id="csvStatus">No files yet. The file needs a Date column and a Close / Price column.</p>
+                </div>
+
+                
+
+                                <div class="mc-field">
+                    <label class="mc-label" for="inPeriod">Historical period</label>
+                    <select id="inPeriod">
+                        <option value="1">Last 1 year</option>
+                        <option value="3">Last 3 years</option>
+                        <option value="5" selected>Last 5 years</option>
+                        <option value="99">All uploaded data</option>
+                    </select>
+                </div>
+
+                <div class="mc-field">
+                    <label class="mc-label" for="inHorizon">Simulation horizon</label>
+                    <select id="inHorizon">
+                        <option value="100">100 trading days (≈ 5 months)</option>
+                        <option value="126">126 trading days (≈ 6 months)</option>
+                        <option value="252" selected>252 trading days (≈ 1 year)</option>
+                        <option value="504">504 trading days (≈ 2 years)</option>
+                    </select>
+                </div>
+
+                <div class="mc-field">
+                    <label class="mc-label" for="inSims">Number of simulations</label>
+                    <select id="inSims">
+                        <option value="1000">1,000 paths</option>
+                        <option value="5000">5,000 paths</option>
+                        <option value="10000" selected>10,000 paths</option>
+                    </select>
+                </div>
+
+                <div class="mc-field">
+                    <span class="mc-label">Confidence level</span>
+                    <div class="mc-seg">
+                        <button type="button" data-conf="0.90">90%</button>
+                        <button type="button" data-conf="0.95" class="on">95%</button>
+                        <button type="button" data-conf="0.99">99%</button>
+                    </div>
+                </div>
+
+                <div class="mc-field">
+                    <label class="mc-label" for="inCapital">Initial capital (Rp)</label>
+                    <input type="number" id="inCapital" value="100000000" min="1000000" step="1000000">
+                </div>
+
+                <button type="button" id="runSimulation" disabled>Run Simulation</button>
+            </div>
+
+            <div class="mc-results-panel" id="simResults">
+                <p class="mc-placeholder">Upload at least one CSV and press Run Simulation. Your results will appear here.</p>
+            </div>
+
+        </div>
+
+    </div>
+    
+</section>
+
+</main>
+
+<script>
+    (function () {
+        var toggle = document.getElementById("menuToggle");
+        var menu = document.getElementById("menu");
+        toggle.addEventListener("click", function () {
+            var open = menu.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+    })();
+</script>
+<script src="capm.js"></script>
+</body>
+</html>
