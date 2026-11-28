@@ -1149,3 +1149,16 @@
     line-height: 1.7;
     color: #806d68;
 }
+
+.mc-table-wrap { overflow-x: auto; margin-top: 12px; }
+
+.mc-wide-table th {
+    min-width: 90px;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 1.35;
+    white-space: normal;
+    vertical-align: bottom;
+}
+.mc-wide-table td { white-space: nowrap; }
+.mc-wide-table td small { color: #806d68; }

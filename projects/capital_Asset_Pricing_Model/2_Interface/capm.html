@@ -54,7 +54,7 @@
         <p class="mc-hero-sub">Estimating beta and the expected return of a stock from its risk relative to the market.</p>
         <ul class="mc-hero-chips">
             <li>Python</li>
-            <li>NumPy</li>
+            <li>statsmodels</li>
             <li>Pandas</li>
             <li>Matplotlib</li>
         </ul>
@@ -186,6 +186,7 @@ import yfinance as yf
                 <h4>Result of Expected Return and Interpretation</h4>
                 <p>
                     Learn how beta and the market risk premium give the expected return, and how to read R-squared, t-statistics and confidence intervals.
+                </p>
             </article>
 
         </div>
@@ -196,16 +197,14 @@ import yfinance as yf
 
 
     <!-- TAB 2: FULL CODE -->
-        <!-- TAB 2: FULL CODE -->
-    <div class="mc-panel" id="code">
+        <div class="mc-panel" id="code">
 
         <div class="mc-section-heading">
             <span>02 / EXPLORE THE MODEL</span>
             <h2>Full Code</h2>
-            <p>Explore the complete Python implementation and simulation results.</p>
+            <p>Explore the complete Python implementation and the CAPM results.</p>
         </div>
 
-        <!-- KODE (kiri) + SIDEBAR (kanan) -->
         <div class="mc-code-layout">
 
             <div class="mc-source-code">
@@ -222,93 +221,108 @@ import yfinance as yf
                 <div class="mc-side-card">
                     <h3>Download and open</h3>
                     <a class="mc-btn mc-btn-solid" id="downloadCode" href="../1_Model/CAPM.py" download="CAPM.py">Download CAPM.py</a>
+                    <a class="mc-btn mc-btn-outline" href="../1_Model/outputs/CAPM_Analysis_Results.xlsx" download>Download Excel results</a>
                     <a class="mc-btn mc-btn-outline" href="https://github.com/Nebula-Project1409" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                 </div>
 
                 <div class="mc-side-card">
                     <h3>How to run</h3>
-                    <pre class="mc-cmd">pip install yfinance numpy pandas matplotlib scipy
+                    <pre class="mc-cmd">pip install yfinance pandas numpy matplotlib seaborn statsmodels openpyxl
 python CAPM.py</pre>
+                    <p style="margin-top:12px">Needs an internet connection (Yahoo Finance) and a CSV of 3-month government bond yields in the data folder.</p>
                 </div>
 
                 <div class="mc-side-card">
                     <h3>What the code does</h3>
                     <p>
-                        Downloads daily prices of ASII, BBCA, BMRI and INDF (2021–2025),
-                        computes returns and covariance, finds Markowitz maximum-Sharpe
-                        weights (max 40% per stock), simulates 1,000 correlated price paths
-                        over 100 trading days, then reports the probability of profit,
-                        Value at Risk, and the charts below.
+                        Downloads daily prices of BBCA, BMRI, INDF and ASII and the market index
+                        from Yahoo Finance, converts them to monthly returns, and subtracts a monthly
+                        risk-free rate taken from the 3-month government bond yield. It estimates
+                        alpha and beta with OLS, computes the market risk premium, and compares the
+                        CAPM expected return with the historical return.
                     </p>
                 </div>
             </aside>
 
         </div>
 
-        <!-- HASIL -->
         <div class="mc-subheading">
             <span>RESULTS</span>
             <h3>Results from my analysis</h3>
         </div>
         <p class="mc-metrics-note" id="mMeta">Loading results…</p>
-         
         <p class="mc-hint">
-            Data: daily prices from Yahoo Finance, adjusted for dividends and stock splits.
-            Weights come from Markowitz maximum-Sharpe optimization (risk-free rate 6%, maximum 40% per stock).
+            Data: daily prices from Yahoo Finance, adjusted for dividends and stock splits, converted to monthly returns.
+            Risk-free rate: the 3-month Indonesian government bond yield, converted to a monthly rate and lagged by one month.
         </p>
+
         <div class="mc-metrics">
-            <article class="mc-metric">
-                <span>Probability of profit</span>
-                <strong id="mProfit">–</strong>
-                <small>paths ending above capital</small>
-            </article>
-            <article class="mc-metric">
-                <span>Probability of loss</span>
-                <strong id="mLoss">–</strong>
-                <small>paths ending below capital</small>
-            </article>
-            <article class="mc-metric">
-                <span>Value at Risk 95%</span>
-                <strong id="mVar">–</strong>
-                <small id="mVarNote">of the initial capital</small>
-            </article>
-                <article class="mc-metric">
-                <span>Expected Shortfall 95%</span>
-                <strong id="mEs">–</strong>
-                <small id="mEsNote">average of the worst 5%</small>
-            </article>
+            <article class="mc-metric"><span>Market Risk Premium (annual)</span><strong id="mPremium">–</strong><small>average market return minus risk-free rate, per year</small></article>
+            <article class="mc-metric"><span>Latest Risk-Free Rate</span><strong id="mRf">–</strong><small>3-month government bond yield</small></article>
+            <article class="mc-metric"><span>Average Market Return (annual)</span><strong id="mMkt">–</strong><small>average monthly market return × 12</small></article>
+            <article class="mc-metric"><span>Monthly Observations</span><strong id="mMonths">–</strong><small>months used in each regression</small></article>
         </div>
         <p class="mc-key" id="mKey"></p>
 
-        <div class="mc-metrics">
-            <article class="mc-metric"><span>Average final value</span><strong class="money" id="mAvg">–</strong><small>mean of all simulated paths</small></article>
-            <article class="mc-metric"><span>Median final value</span><strong class="money" id="mMed">–</strong><small>half of the paths end above</small></article>
-            <article class="mc-metric"><span>Bad scenario (P5)</span><strong class="money neg" id="mP5">–</strong><small>only 5% of paths end lower</small></article>
-            <article class="mc-metric"><span>Good scenario (P95)</span><strong class="money" id="mP95">–</strong><small>only 5% of paths end higher</small></article>
+        <div class="mc-chart-card">
+            <h3>CAPM results per stock</h3>
+            <p class="mc-caption">Each stock's monthly excess return is regressed on the market's monthly excess return with OLS.</p>
+            <div class="mc-table-wrap">
+                <table class="mc-result-table mc-wide-table">
+                    <thead><tr>
+                        <th>Company</th>
+                        <th>Beta</th>
+                        <th>Beta 95% Confidence Interval</th>
+                        <th>Beta t-statistic</th>
+                        <th>Beta p-value</th>
+                        <th>R-squared</th>
+                        <th>Alpha (monthly)</th>
+                        <th>Alpha p-value</th>
+                        <th>CAPM Expected Return (annual)</th>
+                        <th>Historical Return (annual)</th>
+                    </tr></thead>
+                    <tbody id="capmRows"><tr><td colspan="10">Loading…</td></tr></tbody>
+                </table>
+            </div>
+            <p class="mc-hint">
+                CAPM expected return = latest risk-free rate + beta × market risk premium. Historical return = average monthly return × 12.
+                Alpha is the average monthly return that the market does not explain.
+            </p>
         </div>
 
         <div class="mc-code-charts">
-            <div class="mc-chart-card">
-                <h3>Simulated Price Paths</h3>
-                <img src="images/grafik_jalur_monte_carlo.png" alt="Simulated portfolio paths with mean and percentile lines">
-                        <p class="mc-caption">Each thin line is one simulated future of the portfolio. The black line is the average, the red and green dashed lines are the 5th and 95th percentiles, and the dotted line is the initial capital.</p>
-            </div>
-
-            <div class="mc-chart-card">
-                <h3>Final Value Distribution</h3>
-                <img src="images/grafik_sebaran_nilai_akhir.png" alt="Histogram of final portfolio values">
-                       <p class="mc-caption">Where all simulated paths end. The dashed lines mark the 5th and 95th percentiles, and the solid lines mark the median and the average.</p>
+            <div class="mc-chart-card mc-chart-wide">
+                <h3>Normalized Stock Prices vs Market</h3>
+                <img src="images/01_normalized_prices.png" alt="Normalized stock prices compared with the market index">
+                <p class="mc-caption">All series are rebased to 100 at the first common date, so growth can be compared on the same scale. The dotted line is the market index.</p>
             </div>
 
             <div class="mc-chart-card mc-chart-wide">
-                <h3>Stock Comparison and Markowitz Weights</h3>
-                <img src="images/grafik_perbandingan_saham.png" alt="Annual return, volatility, Sharpe ratio and weights per stock">
-                        <p class="mc-caption">Each stock's annual return, volatility and Sharpe ratio, and the weight Markowitz assigns to it.</p>
+                <h3>Monthly Stock Returns</h3>
+                <img src="images/02_monthly_returns.png" alt="Monthly returns of each stock">
+                <p class="mc-caption">Monthly percentage return of each stock. Larger swings mean higher volatility.</p>
+            </div>
+
+            <div class="mc-chart-card mc-chart-wide">
+                <h3>CAPM Regression</h3>
+                <img src="images/03_capm_regression.png" alt="CAPM regression of each stock on the market">
+                <p class="mc-caption">Each dot is one month: the market's excess return on the horizontal axis and the stock's excess return on the vertical axis. The slope of the fitted line is beta.</p>
+            </div>
+
+            <div class="mc-chart-card">
+                <h3>Beta by Company</h3>
+                <img src="images/04_beta_comparison.png" alt="Estimated beta of each company">
+                <p class="mc-caption">Estimated beta of each stock. The dashed line at 1 is the beta of the market itself.</p>
+            </div>
+
+            <div class="mc-chart-card">
+                <h3>CAPM Expected Return vs Historical Return</h3>
+                <img src="images/05_expected_returns.png" alt="CAPM expected return versus historical return">
+                <p class="mc-caption">The return CAPM says a stock should earn for its risk, next to the average return it actually earned, both annualized.</p>
             </div>
         </div>
 
     </div>
-    
 
        <!-- TAB 3: TRY IT YOURSELF -->
     <div class="mc-panel" id="simulator">

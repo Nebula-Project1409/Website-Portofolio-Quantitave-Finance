@@ -15,6 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import statsmodels.api as sm
+import json
 
 
 # ============================================================
@@ -38,6 +39,8 @@ TICKERS = {
 
 # File imbal hasil obligasi (risk-free), disimpan di folder data/ di samping CAPM.py
 MARKET_PREMIUM_ANNUAL = None
+PREMIUM_SCENARIOS = [0.03, 0.05, 0.07]   # (isi seperti di pesan sebelumnya, beserta komentarnya)
+
 RF_FILE = Path(__file__).resolve().parent / "data" / "Data Historis Imbal Hasil Obligasi Indonesia 3 Bulan (1).csv"
 
 sns.set_theme(style="whitegrid")
@@ -691,6 +694,55 @@ def plot_expected_returns(results_df):
     plt.show()
 
 
+
+# ============================================================
+# 10b. EXPORT RESULTS FOR THE WEBSITE (hasil.json)
+# ============================================================
+def export_json(results_df, regression_data):
+
+    first = next(iter(regression_data.values()))
+
+    columns = {
+        "Company": "company",
+        "Ticker": "ticker",
+        "Observations": "observations",
+        "Beta": "beta",
+        "Beta SE": "beta_se",
+        "Beta t-stat": "beta_t",
+        "Beta p-value": "beta_p",
+        "Beta CI 95% Lower": "beta_ci_low",
+        "Beta CI 95% Upper": "beta_ci_high",
+        "Alpha Monthly": "alpha_monthly",
+        "Alpha SE": "alpha_se",
+        "Alpha t-stat": "alpha_t",
+        "Alpha p-value": "alpha_p",
+        "Alpha CI 95% Lower": "alpha_ci_low",
+        "Alpha CI 95% Upper": "alpha_ci_high",
+        "R-Squared": "r2",
+        "CAPM Expected Annual": "capm_expected_annual",
+        "Historical Return Annual": "historical_return_annual",
+    }
+
+    stocks = results_df[list(columns)].rename(columns=columns)
+    row = results_df.iloc[0]
+
+    output = {
+        "period": [str(first.index.min().date()), str(first.index.max().date())],
+        "market_index": row["Market Index"],
+        "risk_free_last": float(row["Risk-Free Last"]),
+        "market_return_annual": float(row["Market Return Annual"]),
+        "market_premium_annual": float(row["Premium Used"]),
+        "premium_source": row["Premium Source"],
+        "stocks": json.loads(stocks.to_json(orient="records")),
+    }
+
+    with open(OUTPUT_DIR / "hasil.json", "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+
+    print(f"\nWebsite data saved: {OUTPUT_DIR / 'hasil.json'}")
+    
+    
+    
 # ============================================================
 # 11. MAIN PROGRAM
 # ============================================================
@@ -701,6 +753,8 @@ def main():
     (prices, monthly_prices, monthly_returns, results_df, regression_data) = (
         run_analysis()
     )
+    
+    export_json(results_df, regression_data)
 
     print("\nGenerating visualizations...")
 

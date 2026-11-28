@@ -30,7 +30,7 @@ if (hashPanel && hashPanel.classList.contains("mc-panel")) {
 
 
 /* ---------- TAB 2: kode dan hasil ---------- */
-const KODE_URL = "../1_Model/monte_carlo.py";
+const KODE_URL = "../1_Model/CAPM.py";
 const HASIL_URL = "../1_Model/outputs/hasil.json";
 
 const codeText = document.getElementById("codeText");
@@ -46,7 +46,7 @@ fetch(KODE_URL)
     })
     .catch(() => {
         codeText.textContent =
-            "Could not load monte_carlo.py. Open this page with Live Server " +
+            "Could not load CAPM.py. Open this page with Live Server " +
             "or the published site, not by double-clicking the file.";
     });
 
